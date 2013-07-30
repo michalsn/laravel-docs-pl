@@ -9,11 +9,11 @@
 <a name="introduction"></a>
 ## Introduction
 
-Facades provide a "static" interface to classes that are available in the application's [IoC container](/docs/ioc). Laravel ships with many facades, and you have probably been using them without even knowing it!
+Facades provide a "static" interface to classes that are available in the application's [IoC container](/ioc). Laravel ships with many facades, and you have probably been using them without even knowing it!
 
 Occasionally, You may wish to create your own facades for your applications and packages, so let's explore the concept, development and usage of these classes.
 
-> **Note:** Before digging into facades, it is strongly recommended that you become very familiar with the Laravel [IoC container](/docs/ioc).
+> **Note:** Before digging into facades, it is strongly recommended that you become very familiar with the Laravel [IoC container](/ioc).
 
 <a name="explanation"></a>
 ## Explanation
@@ -79,7 +79,7 @@ We need to be able to resolve this class from the IoC container. So, let's add a
 		return new \PaymentGateway\Payment;
 	});
 
-A great place to register this binding would be to create a new [service provider](/docs/ioc#service-providers) named `PaymentServiceProvider`, and add this binding to the `register` method. You can then configure Laravel to load your service provider from the `app/config/app.php` configuration file.
+A great place to register this binding would be to create a new [service provider](/ioc#service-providers) named `PaymentServiceProvider`, and add this binding to the `register` method. You can then configure Laravel to load your service provider from the `app/config/app.php` configuration file.
 
 Next, we can create our own facade class:
 
@@ -98,4 +98,4 @@ Finally, if we wish, we can add an alias for our facade to the `aliases` array i
 <a name="mocking-facades"></a>
 ## Mocking Facades
 
-Unit testing is an important aspect of why facades work the way that they do. In fact, testability is the primary reason for facades to even exist. For more information, check out the [mocking facades](/docs/testing#mocking-facades) section of the documentation.
+Unit testing is an important aspect of why facades work the way that they do. In fact, testability is the primary reason for facades to even exist. For more information, check out the [mocking facades](/testing#mocking-facades) section of the documentation.
