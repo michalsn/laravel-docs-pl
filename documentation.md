@@ -1,6 +1,6 @@
-- Preface
-    - [Introduction](/introduction)
-    - [Quickstart](/quick)
+- Wstęp
+    - [Wprowadzenie](/introduction)
+    - [Szybki start](/quick)
     - [Contributing](/contributing)
 - Getting Started
     - [Installation](/installation)
