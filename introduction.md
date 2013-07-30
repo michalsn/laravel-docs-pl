@@ -1,39 +1,39 @@
-# Introduction
+# Wprowadzenie
 
-- [Laravel Philosophy](#laravel-philosophy)
-- [Learning Laravel](#learning-laravel)
-- [Development Team](#development-team)
-- [Framework Sponsors](#framework-sponsors)
+- [Filozofia Laravel](#laravel-philosophy)
+- [Nauka Laravel](#learning-laravel)
+- [Zespół developerski](#development-team)
+- [Sponsorzy frameworka](#framework-sponsors)
 
 <a name="laravel-philosophy"></a>
-## Laravel Philosophy
+## Filozofia Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, and caching.
+Laravel jest frameworkiem o ekspresywnej i eleganckiej składni. Wierzymy, że tworzenie aplikacji musi być przyjemnym i kreatywnym doświadczeniem. Laravel dostarcza typowych funkcjonalności, które są wykorzystywane na codzień przy tworzeniu projektów internetowych, np. autentykacja, routing, sesje i cache'owanie.
 
-Laravel aims to make the development process a pleasing one for the developer without sacrificing application functionality. Happy developers make the best code. To this end, we've attempted to combine the very best of what we have seen in other web frameworks, including frameworks implemented in other languages, such as Ruby on Rails, ASP.NET MVC, and Sinatra.
+Laravel ma na celu uczynienie procesu tworzenia aplikacji, jak najwygodniejszym dla developera, bez konieczności poświęcania funkcjonalności samej aplikacji. Szczęśliwi developerzy tworzą najlepszy kod. W tym celu podjęliśmy próbę połączenia tego co najlepsze z innych frameworków w jedno rozwiązanie. Czerpaliśmy wzorce nie tylko z projektów opartych o PHP, ale też Ruby on Rails, ASP.NET MVC i Sinatra.
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+Laravel jest łatwo dostępny, ale i potężny. Stanowi świetny zestaw narzędzi do budowy dużych i solidnych aplikacji. Ekspresyjny system migracji i ściśle zintegrowane testowanie, dają Ci narzędzia potrzebne do budowy każdej aplikacji.
 
 <a name="learning-laravel"></a>
-## Learning Laravel
+## Nauka Laravel
 
-One of the best ways to learn Laravel is to read through the entirety of its documentation. This guide details all aspects of the framework and how to apply them to your application.
+Jednym z najlepszych sposobów na naukę Laravel, jest przeczytanie całej dostępnej dokumentacji. W ten sposób zostaniesz wprowadzony we wszystkie aspekty frameworka oraz to, w jaki sposób zastosować je w swojej aplikacji.
 
-In addition to this guide, you may wish to check out some [Laravel books](http://wiki.laravel.io/Books). These community written books serve as a good supplemental resource for learning about the framework:
+Jako dodatek do tej dokumentacji, możesz spróbować zapoznać się z niektórymi [książkami o Laravel](http://wiki.laravel.io/Books). Książki te zostały napisane przez społeczność i stanowią doskonały dodatek i pomoc przy nauce frameworka:
 
-- [Code Bright](https://leanpub.com/codebright) by Dayle Rees
-- [Laravel Testing Decoded](https://leanpub.com/laravel-testing-decoded) by Jeffrey Way
-- [Laravel: From Apprentice To Artisan](https://leanpub.com/laravel) by Taylor Otwell
+- [Code Bright](https://leanpub.com/codebright) - Dayle Rees
+- [Laravel Testing Decoded](https://leanpub.com/laravel-testing-decoded) - Jeffrey Way
+- [Laravel: From Apprentice To Artisan](https://leanpub.com/laravel) - Taylor Otwell
 
 <a name="development-team"></a>
-## Development Team
+## Zespół developerski
 
-Laravel was created by [Taylor Otwell](https://github.com/taylorotwell), who continues to lead development of the framework. Other prominent community members and contributors include [Dayle Rees](https://github.com/daylerees), [Shawn McCool](https://github.com/ShawnMcCool), [Jeffrey Way](https://github.com/JeffreyWay), [Jason Lewis](https://github.com/jasonlewis), [Ben Corlett](https://github.com/bencorlett), [Franz Liedke](https://github.com/franzliedke), [Dries Vints](https://github.com/driesvints), [Mior Muhammad Zaki](https://github.com/crynobone), and [Phil Sturgeon](https://github.com/philsturgeon).
+Laravel stworzył [Taylor Otwell](https://github.com/taylorotwell), który nadal jest głównym developerem frameworka. Do listy prominentnych członków społeczności oraz osób, które wnoszą największy wkład w rozwój frameworka, zaliczani są: [Dayle Rees](https://github.com/daylerees), [Shawn McCool](https://github.com/ShawnMcCool), [Jeffrey Way](https://github.com/JeffreyWay), [Jason Lewis](https://github.com/jasonlewis), [Ben Corlett](https://github.com/bencorlett), [Franz Liedke](https://github.com/franzliedke), [Dries Vints](https://github.com/driesvints), [Mior Muhammad Zaki](https://github.com/crynobone) oraz [Phil Sturgeon](https://github.com/philsturgeon).
 
 <a name="framework-sponsors"></a>
-## Framework Sponsors
+## Sponsorzy frameworka
 
-The following organizations have made financial contributions to the development of the Laravel framework:
+Następujące organizacje dokonały wkładów finansowych na rzecz rozwoju frameworka Laravel:
 
 - [UserScape](http://userscape.com)
 - [Cartalyst](http://cartalyst.com)
