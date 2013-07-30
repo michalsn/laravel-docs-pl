@@ -1,45 +1,45 @@
-# Laravel Quickstart
+# Laravel szybki start
 
-- [Installation](#installation)
+- [Instalacja](#installation)
 - [Routing](#routing)
-- [Creating A View](#creating-a-view)
-- [Creating A Migration](#creating-a-migration)
+- [Tworzenie widoku](#creating-a-view)
+- [Tworzenie migracji](#creating-a-migration)
 - [Eloquent ORM](#eloquent-orm)
-- [Displaying Data](#displaying-data)
+- [Wyświetlanie danych](#displaying-data)
 
 <a name="installation"></a>
-## Installation
+## Instalacja
 
-To install the Laravel framework, you may issue the following command from your terminal:
+Aby zainstalować framework Laravel, możesz wykonać następujące polecenie z poziomu linii komend:
 
 	composer create-project laravel/laravel your-project-name --prefer-dist
 
-Or, you may also download a copy of the [repository from Github](https://github.com/laravel/laravel/archive/master.zip). Next, after [installing Composer](http://getcomposer.org), run the `composer install` command in the root of your project directory. This command will download and install the framework's dependencies.
+Możesz również ściągnąć kopię z [repozytorium GitHub](https://github.com/laravel/laravel/archive/master.zip). Następnie po [zainstalowaniu Composera](http://getcomposer.org), wykonaj komendę `composer install` w głównym katalogu Twojego projektu. Ta komenda ściągnie i zainstaluje potrzebne zależności dla frameworka.
 
-After installing the framework, take a glance around the project to familiarize yourself with the directory structure. The `app` directory contains folders such as `views`, `controllers`, and `models`. Most of your application's code will reside somewhere in this directory. You may also wish to explore the `app/config` directory and the configuration options that are available to you.
+Po zainstalowaniu frameworka, rozejrzyj się po projekcie, aby zaznajomić się ze strukturą katalogów. Katalog `app` zawiera takie foldery jak `views`, `controllers` i `models`. Większość kodu Twoich aplikacji będzie się znajdowała właśnie w tym katalogu. Możesz również zajrzeć do folderu `app/config` i zapoznać się z dostępnymi opcjami konfiguracyjnymi.
 
 <a name="routing"></a>
 ## Routing
 
-To get started, let's create our first route. In Laravel, the simplest route is a route to a Closure. Pop open the `app/routes.php` file and add the following route to the bottom of the file:
+Aby zacząć, stwórzmy naszą pierwszą regułę routingu. Otwórz plik `app/routes.php` i dodaj następującą regułę na końcu pliku:
 
 	Route::get('users', function()
 	{
 		return 'Users!';
 	});
 
-Now, if you hit the `/users` route in your web browser, you should see `Users!` displayed as the response. Great! You've just created your first route.
+Jeśli przejdziesz pod adres `/users` w swojej przeglądarce, powinieneś zobaczyć napis `Users!`. Świetnie! Stworzyłeś swoją pierwszą regułę routingu.
 
-Routes can also be attached to controller classes. For example:
+Reguły routingu mogą być równiez przypisane do klasy kontrolera, np:
 
 	Route::get('users', 'UserController@getIndex');
 
-This route informs the framework that requests to the `/users` route should call the `getIndex` method on the `UserController` class. For more information on controller routing, check out the [controller documentation](/docs/controllers).
+Ta reguła informuje framework, że adres `/users` powinien wywołać metodę `getIndex` z klasy `UserController`. Po więcej informacji z tego zakresu, zajrzyj do [dokumentacji kontrolera](/docs/controllers).
 
 <a name="creating-a-view"></a>
-## Creating A View
+## Tworzenie widoku
 
-Next, we'll create a simple view to display our user data. Views live in the `app/views` directory and contain the HTML of your application. We're going to place two new views in this directory: `layout.blade.php` and `users.blade.php`. First, let's create our `layout.blade.php` file:
+Teraz stworzymy prosty widok, aby wyświetlać nasze dane. Widoki znajdują się w katalogu `app/view` i zawierają kod HTML Twojej aplikacji. Utworzymy dwa nowe widoki w tym folderze: `layout.blade.php` i `users.blade.php`. Najpierw stworzymy plik `layout.blade.php`:
 
 	<html>
 		<body>
@@ -49,7 +49,7 @@ Next, we'll create a simple view to display our user data. Views live in the `ap
 		</body>
 	</html>
 
-Next, we'll create our `users.blade.php` view:
+Następnie plik `users.blade.php`:
 
 	@extends('layout')
 
@@ -57,31 +57,31 @@ Next, we'll create our `users.blade.php` view:
 		Users!
 	@stop
 
-Some of this syntax probably looks quite strange to you. That's because we're using Laravel's templating system: Blade. Blade is very fast, because it is simply a handful of regular expressions that are run against your templates to compile them to pure PHP. Blade provides powerful functionality like template inheritance, as well as some syntax sugar on typical PHP control structures such as `if` and `for`. Check out the [Blade documentation](/docs/templates) for more details.
+Część składni zapewne wygląda dla Ciebie dość dziwnie. To dlatego, że używamy systemu szablonów dostarczonego przez Laravel: Blade. Blade jest bardzo szybki, ponieważ to kilka wyrażeń regularnych, które kompilują szablon do czystego PHP. Blade dostarcza potężnej funkcjonalności, np. umożliwia dziedziczenie szablonów oraz dodaje usprawnienia składni dla typowych strukturach kontroli w PHP, takich jak: `if` i `for`. Po więcej informacji zajrzyj do [dokumentacji Blade](/docs/templates).
 
-Now that we have our views, let's return it from our `/users` route. Instead of returning `Users!` from the route, return the view instead:
+Teraz, kiedy mamy już nasze widoki, zwróćmy je dla reguły routingu  `/users`. Zamiast zwracać ciąg `Users!`, zwrócimy nasz widok:
 
 	Route::get('users', function()
 	{
 		return View::make('users');
 	});
 
-Wonderful! Now you have setup a simple view that extends a layout. Next, let's start working on our database layer.
+Wspaniale! Utworzyliśmy prosty widok, który rozszerza layout. Teraz zacznijmy pracować nad warstwą bazy danych.
 
 <a name="creating-a-migration"></a>
-## Creating A Migration
+## Tworzenie migracji
 
-To create a table to hold our data, we'll use the Laravel migration system. Migrations let you expressively define modifications to your database, and easily share them with the rest of your team.
+Aby utworzyć tabelę, która będzie przechowywała nasze dane, użyjemy systemu migracji dostarczonego przez Laravel. Migracje pozwalają w ekspresyjny sposób zdefiniować zmiany dla bazy danych i w prosty sposób podzielić się nimi z innymi członkami Twojego zespołu.
 
-First, let's configure a database connection. You may configure all of your database connections from the `app/config/database.php` file. By default, Laravel is configured to use SQLite, and an SQLite database is included in the `app/database` directory. If you wish, you may change the `driver` option to `mysql` and configure the `mysql` connection credentials within the database configuration file.
+Najpierw skonfigurujmy połączenie dla bazy danych. Wszystkie połączenia z abzą danych możesz skonfigurować w pliku `app/config/database.php`. Domyślnie Laravel jest skonfigurowany tak, aby używać bazy SQLite. Baza SQLite jest dołączona w katalogu `app/database`. Jeśli chcesz, możesz zmienić opcję `driver` na `mysql` i skonfigurować dane dostępowe dla połączenia w pliku konfiguracyjnym.
 
-Next, to create the migration, we'll use the [Artisan CLI](/docs/artisan). From the root of your project, run the following from your terminal:
+Aby stworzyć migrację, użyjemy [Artisan CLI](/docs/artisan). W głównym katalogu Twojego projektu, wywołaj następującą komendę z linii komend:
 
 	php artisan migrate:make create_users_table
 
-Next, find the generated migration file in the `app/database/migrations` folder. This file contains a class with two methods: `up` and `down`. In the `up` method, you should make the desired changes to your database tables, and in the `down` method you simply reverse them.
+Wygenerowany plik z migracją, znajdziesz w katalogu `app/database/migrations`. Ten plik zawiera klasę z dwoma metodami `up` i `down`. W metodzie `up` dokonujemy porządanych przez nas zmian w bazie danych, a w metodzie `down` po prostu je cofamy.
 
-Let's define a migration that looks like this:
+Zdefiniujmy migrację, która wygląda w ten posób:
 
 	public function up()
 	{
@@ -99,26 +99,26 @@ Let's define a migration that looks like this:
 		Schema::drop('users');
 	}
 
-Next, we can run our migrations from our terminal using the `migrate` command. Simply execute this command from the root of your project:
+Teraz możemy uruchomić naszą migrację z poziomu linii komend przy użyciu komendy `migrate`. Wystarczy, że wywołasz tę komendę z poziomu głównego katalogu projektu:
 
 	php artisan migrate
 
-If you wish to rollback a migration, you may issue the `migrate:rollback` command. Now that we have a database table, let's start pulling some data!
+Jeśli chcesz cofnąć migrację, możesz użyć komendy `migrate:rollback`. Teraz kiedy mamy już tabelę w bazie danych, możemy zacząć pobierać dane!
 
 <a name="eloquent-orm"></a>
 ## Eloquent ORM
 
-Laravel ships with a superb ORM: Eloquent. If you have used the Ruby on Rails framework, you will find Eloquent familiar, as it follows the ActiveRecord ORM style of database interaction.
+Laravel posiada świetny ORM: Eloquent. Jeśli używałeś frameworka Ruby on Rails, to Eloquent wyda Ci się znajomy, ponieważ do interakcji z bazą danych wykorzystuje on wzorzec ORM Active Record.
 
-First, let's define a model. An Eloquent model can be used to query an associated database table, as well as represent a given row within that table. Don't worry, it will all make sense soon! Models are typically stored in the `app/models` directory. Let's define a `User.php` model in that directory like so:
+Na początek zdefiniujmy model. Model Eloquent, może być użyty, aby skojarzyć tabelę z bazy danych lub konkretny wiersz z tabeli. Nie mart się, wkrótce wszystko nabierze sensu! Modele są zazwyczaj przechowywane w katalogu `app/models`. Zdefiniujmy więc model `User.php` w tym folderze:
 
 	class User extends Eloquent {}
 
-Note that we do not have to tell Eloquent which table to use. Eloquent has a variety of conventions, one of which is to use the plural form of the model name as the model's database table. Convenient!
+Zauważ, że nie musimy mówić modelowi Eloquent, której tabeli ma użyć. Eloquent ma wiele konwencji, jedną z nich jest używanie dla nazwy tabeli liczby mnogiej od nazwy modelu. Bardzo wygodnie!
 
-Using your preferred database administration tool, insert a few rows into your `users` table, and we'll use Eloquent to retrieve them and pass them to our view.
+Korzystając z preferowanych przez Ciebie narzędzi do administrowania bazą danych, dodaj trochę danych do tabeli `users`. Teraz możemy użyć Eloquent, aby zwrócić dane do naszego widoku.
 
-Now let's modify our `/users` route to look like this:
+Teraz zmodyfikujmy naszą regułę routingu `/users`, aby wyglądała w ten sposób:
 
 	Route::get('users', function()
 	{
@@ -127,14 +127,14 @@ Now let's modify our `/users` route to look like this:
 		return View::make('users')->with('users', $users);
 	});
 
-Let's walk through this route. First, the `all` method on the `User` model will retrieve all of the rows in the `users` table. Next, we're passing these records to the view via the `with` method. The `with` method accepts a key and a value, and is used to make a piece of data available to a view.
+Prześledźmy to po kolei. Najpierw metoda `all` z modelu `User` zwróci wszystkie wiersze z tabeli `users`. Dalej, przypiszemy te dane do widoku za pośrednictwem metody `with`. Metoda `with` przyjmuje jako parametr klucz i wartość. W ten sposób przekazywane dane są dostępne w widoku.
 
-Awesome. Now we're ready to display the users in our view!
+Świetnie. Teraz jesteśmy gotowi do wyświetlenia użytkowników w naszym widoku!
 
 <a name="displaying-data"></a>
-## Displaying Data
+## Wyświetlanie danych
 
-Now that we have made the `users` available to our view. We can display them like so:
+Zmienna `users` jest teraz dostępna w naszym widoku. Możemy więc wyświetlić użytkowników w ten sposób:
 
 	@extends('layout')
 
@@ -144,6 +144,6 @@ Now that we have made the `users` available to our view. We can display them lik
 		@endforeach
 	@stop
 
-You may be wondering where to find our `echo` statements. When using Blade, you may echo data by surrounding it with double curly braces. It's a cinch. Now, you should be able to hit the `/users` route and see the names of your users displayed in the response.
+Możesz się zastanawiać gdzie podziała się instrukcja `echo`. Kiedy korzystamy z szablonów Blade, możemy wyświetlić dane otaczając je podwójnymi nawiasami klamrowymi. Łatwizna. Teraz, kiedy przejdziesz pod adres `/users`, powinieneś zobaczyć listę wyświetlonych użytkowników.
 
-This is just the beginning. In this tutorial, you've seen the very basics of Laravel, but there are so many more exciting things to learn. Keep reading through the documentation and dig deeper into the powerful features available to you in [Eloquent](/docs/eloquent) and [Blade](/docs/templates). Or, maybe you're more interested in [Queues](/docs/queues) and [Unit Testing](/docs/testing). Then again, maybe you want to flex your architecture muscles with the [IoC Container](/docs/ioc). The choice is yours!
+To dopiero początek. W tym tutorialu, zapoznałeś się podstawami podstaw frameworka Laravel. Jest jeszcze wiele ekscytujących rzeczy do nauki. Kontynuuj czytanie dokumentacji i zagłębiaj się w potężne możliwości jakie oferuje [Eloquent](/docs/eloquent) i system szablonów [Blade](/docs/templates). Może jesteś bardziej zainteresowany w poznaniu możliwości zwykłych zapytań [Queues](/docs/queues) i [Testów jednostkowych](/docs/testing). Później możesz być zainteresowany zmaganiem z architekturą Laravel i [kontenerem IoC](/docs/ioc). Wybór należy do Ciebie!
