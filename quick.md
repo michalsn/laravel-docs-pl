@@ -34,7 +34,7 @@ Reguły routingu mogą być równiez przypisane do klasy kontrolera, np:
 
 	Route::get('users', 'UserController@getIndex');
 
-Ta reguła informuje framework, że adres `/users` powinien wywołać metodę `getIndex` z klasy `UserController`. Po więcej informacji z tego zakresu, zajrzyj do [dokumentacji kontrolera](/docs/controllers).
+Ta reguła informuje framework, że adres `/users` powinien wywołać metodę `getIndex` z klasy `UserController`. Po więcej informacji z tego zakresu, zajrzyj do [dokumentacji kontrolera](/controllers).
 
 <a name="creating-a-view"></a>
 ## Tworzenie widoku
@@ -57,7 +57,7 @@ Następnie plik `users.blade.php`:
 		Users!
 	@stop
 
-Część składni zapewne wygląda dla Ciebie dość dziwnie. To dlatego, że używamy systemu szablonów dostarczonego przez Laravel: Blade. Blade jest bardzo szybki, ponieważ to kilka wyrażeń regularnych, które kompilują szablon do czystego PHP. Blade dostarcza potężnej funkcjonalności, np. umożliwia dziedziczenie szablonów oraz dodaje usprawnienia składni dla typowych strukturach kontroli w PHP, takich jak: `if` i `for`. Po więcej informacji zajrzyj do [dokumentacji Blade](/docs/templates).
+Część składni zapewne wygląda dla Ciebie dość dziwnie. To dlatego, że używamy systemu szablonów dostarczonego przez Laravel: Blade. Blade jest bardzo szybki, ponieważ to kilka wyrażeń regularnych, które kompilują szablon do czystego PHP. Blade dostarcza potężnej funkcjonalności, np. umożliwia dziedziczenie szablonów oraz dodaje usprawnienia składni dla typowych strukturach kontroli w PHP, takich jak: `if` i `for`. Po więcej informacji zajrzyj do [dokumentacji Blade](/templates).
 
 Teraz, kiedy mamy już nasze widoki, zwróćmy je dla reguły routingu  `/users`. Zamiast zwracać ciąg `Users!`, zwrócimy nasz widok:
 
@@ -75,7 +75,7 @@ Aby utworzyć tabelę, która będzie przechowywała nasze dane, użyjemy system
 
 Najpierw skonfigurujmy połączenie dla bazy danych. Wszystkie połączenia z abzą danych możesz skonfigurować w pliku `app/config/database.php`. Domyślnie Laravel jest skonfigurowany tak, aby używać bazy SQLite. Baza SQLite jest dołączona w katalogu `app/database`. Jeśli chcesz, możesz zmienić opcję `driver` na `mysql` i skonfigurować dane dostępowe dla połączenia w pliku konfiguracyjnym.
 
-Aby stworzyć migrację, użyjemy [Artisan CLI](/docs/artisan). W głównym katalogu Twojego projektu, wywołaj następującą komendę z linii komend:
+Aby stworzyć migrację, użyjemy [Artisan CLI](/artisan). W głównym katalogu Twojego projektu, wywołaj następującą komendę z linii komend:
 
 	php artisan migrate:make create_users_table
 
@@ -146,4 +146,4 @@ Zmienna `users` jest teraz dostępna w naszym widoku. Możemy więc wyświetlić
 
 Możesz się zastanawiać gdzie podziała się instrukcja `echo`. Kiedy korzystamy z szablonów Blade, możemy wyświetlić dane otaczając je podwójnymi nawiasami klamrowymi. Łatwizna. Teraz, kiedy przejdziesz pod adres `/users`, powinieneś zobaczyć listę wyświetlonych użytkowników.
 
-To dopiero początek. W tym tutorialu, zapoznałeś się podstawami podstaw frameworka Laravel. Jest jeszcze wiele ekscytujących rzeczy do nauki. Kontynuuj czytanie dokumentacji i zagłębiaj się w potężne możliwości jakie oferuje [Eloquent](/docs/eloquent) i system szablonów [Blade](/docs/templates). Może jesteś bardziej zainteresowany w poznaniu możliwości zwykłych zapytań [Queues](/docs/queues) i [Testów jednostkowych](/docs/testing). Później możesz być zainteresowany zmaganiem z architekturą Laravel i [kontenerem IoC](/docs/ioc). Wybór należy do Ciebie!
+To dopiero początek. W tym tutorialu, zapoznałeś się podstawami podstaw frameworka Laravel. Jest jeszcze wiele ekscytujących rzeczy do nauki. Kontynuuj czytanie dokumentacji i zagłębiaj się w potężne możliwości jakie oferuje [Eloquent](/eloquent) i system szablonów [Blade](/templates). Może jesteś bardziej zainteresowany w poznaniu możliwości zwykłych zapytań [Queues](/queues) i [Testów jednostkowych](/testing). Później możesz być zainteresowany zmaganiem z architekturą Laravel i [kontenerem IoC](/ioc). Wybór należy do Ciebie!
