@@ -16,7 +16,7 @@ Aby zainstalować framework Laravel, możesz wykonać następujące polecenie z 
 
 Możesz również ściągnąć kopię z [repozytorium GitHub](https://github.com/laravel/laravel/archive/master.zip). Następnie po [zainstalowaniu Composera](http://getcomposer.org), wykonaj komendę `composer install` w głównym katalogu Twojego projektu. Ta komenda ściągnie i zainstaluje potrzebne zależności dla frameworka.
 
-Po zainstalowaniu frameworka, rozejrzyj się po projekcie, aby zaznajomić się ze strukturą katalogów. Katalog `app` zawiera takie foldery jak `views`, `controllers` i `models`. Większość kodu Twoich aplikacji będzie się znajdowała właśnie w tym katalogu. Możesz również zajrzeć do folderu `app/config` i zapoznać się z dostępnymi opcjami konfiguracyjnymi.
+Po zainstalowaniu frameworka, rozejrzyj się po projekcie, aby zapoznać się ze strukturą katalogów. Katalog `app` zawiera takie foldery jak `views`, `controllers` i `models`. Większość kodu Twoich aplikacji będzie się znajdowała właśnie w tym katalogu. Możesz również zajrzeć do folderu `app/config` i zapoznać się z dostępnymi opcjami konfiguracyjnymi.
 
 <a name="routing"></a>
 ## Routing
@@ -30,7 +30,7 @@ Aby zacząć, stwórzmy naszą pierwszą regułę routingu. Otwórz plik `app/ro
 
 Jeśli przejdziesz pod adres `/users` w swojej przeglądarce, powinieneś zobaczyć napis `Users!`. Świetnie! Stworzyłeś swoją pierwszą regułę routingu.
 
-Reguły routingu mogą być równiez przypisane do klasy kontrolera, np:
+Reguły routingu mogą być również przypisane do klasy kontrolera, np:
 
 	Route::get('users', 'UserController@getIndex');
 
@@ -59,7 +59,7 @@ Następnie plik `users.blade.php`:
 
 Część składni zapewne wygląda dla Ciebie dość dziwnie. To dlatego, że używamy systemu szablonów dostarczonego przez Laravel: Blade. Blade jest bardzo szybki, ponieważ to kilka wyrażeń regularnych, które kompilują szablon do czystego PHP. Blade dostarcza potężnej funkcjonalności, np. umożliwia dziedziczenie szablonów oraz dodaje usprawnienia składni dla typowych strukturach kontroli w PHP, takich jak: `if` i `for`. Po więcej informacji zajrzyj do [dokumentacji Blade](/templates).
 
-Teraz, kiedy mamy już nasze widoki, zwróćmy je dla reguły routingu  `/users`. Zamiast zwracać ciąg `Users!`, zwrócimy nasz widok:
+Teraz, kiedy mamy już nasze widoki, zastosujmy je dla reguły routingu  `/users`. Zamiast zwracać ciąg `Users!`, zwrócimy nasz widok:
 
 	Route::get('users', function()
 	{
@@ -73,9 +73,9 @@ Wspaniale! Utworzyliśmy prosty widok, który rozszerza layout. Teraz zacznijmy 
 
 Aby utworzyć tabelę, która będzie przechowywała nasze dane, użyjemy systemu migracji dostarczonego przez Laravel. Migracje pozwalają w ekspresyjny sposób zdefiniować zmiany dla bazy danych i w prosty sposób podzielić się nimi z innymi członkami Twojego zespołu.
 
-Najpierw skonfigurujmy połączenie dla bazy danych. Wszystkie połączenia z abzą danych możesz skonfigurować w pliku `app/config/database.php`. Domyślnie Laravel jest skonfigurowany tak, aby używać bazy SQLite. Baza SQLite jest dołączona w katalogu `app/database`. Jeśli chcesz, możesz zmienić opcję `driver` na `mysql` i skonfigurować dane dostępowe dla połączenia w pliku konfiguracyjnym.
+Najpierw skonfigurujmy połączenie dla bazy danych. Wszystkie połączenia z bazą danych możesz skonfigurować w pliku `app/config/database.php`. Domyślnie Laravel jest skonfigurowany tak, aby używać bazy SQLite. Baza SQLite znajduje się w katalogu `app/database`. Jeśli chcesz, możesz zmienić opcję `driver` na `mysql` i skonfigurować dane dostępowe dla połączenia w pliku konfiguracyjnym.
 
-Aby stworzyć migrację, użyjemy [Artisan CLI](/artisan). W głównym katalogu Twojego projektu, wywołaj następującą komendę z linii komend:
+Aby stworzyć migrację, użyjemy [Artisan CLI](/artisan). W głównym katalogu Twojego projektu, wykonaj następujące polecenie z poziomu linii komend:
 
 	php artisan migrate:make create_users_table
 
@@ -114,11 +114,11 @@ Na początek zdefiniujmy model. Model Eloquent, może być użyty, aby skojarzy�
 
 	class User extends Eloquent {}
 
-Zauważ, że nie musimy mówić modelowi Eloquent, której tabeli ma użyć. Eloquent ma wiele konwencji, jedną z nich jest używanie dla nazwy tabeli liczby mnogiej od nazwy modelu. Bardzo wygodnie!
+Zauważ, że nie musimy mówić modelowi Eloquent, której tabeli ma użyć. Eloquent ma wiele gotowych konwencji, jedną z nich jest używanie dla nazwy tabeli liczby mnogiej od nazwy modelu. Bardzo wygodnie!
 
 Korzystając z preferowanych przez Ciebie narzędzi do administrowania bazą danych, dodaj trochę danych do tabeli `users`. Teraz możemy użyć Eloquent, aby zwrócić dane do naszego widoku.
 
-Teraz zmodyfikujmy naszą regułę routingu `/users`, aby wyglądała w ten sposób:
+Zmodyfikujmy naszą regułę routingu `/users`, aby wyglądała w ten sposób:
 
 	Route::get('users', function()
 	{
@@ -146,4 +146,4 @@ Zmienna `users` jest teraz dostępna w naszym widoku. Możemy więc wyświetlić
 
 Możesz się zastanawiać gdzie podziała się instrukcja `echo`. Kiedy korzystamy z szablonów Blade, możemy wyświetlić dane otaczając je podwójnymi nawiasami klamrowymi. Łatwizna. Teraz, kiedy przejdziesz pod adres `/users`, powinieneś zobaczyć listę wyświetlonych użytkowników.
 
-To dopiero początek. W tym tutorialu, zapoznałeś się podstawami podstaw frameworka Laravel. Jest jeszcze wiele ekscytujących rzeczy do nauki. Kontynuuj czytanie dokumentacji i zagłębiaj się w potężne możliwości jakie oferuje [Eloquent](/eloquent) i system szablonów [Blade](/templates). Może jesteś bardziej zainteresowany w poznaniu możliwości zwykłych zapytań [Queues](/queues) i [Testów jednostkowych](/testing). Później możesz być zainteresowany zmaganiem z architekturą Laravel i [kontenerem IoC](/ioc). Wybór należy do Ciebie!
+To dopiero początek. W tym tutorialu, zapoznałeś się z podstawami podstaw frameworka Laravel. Jest jeszcze wiele ekscytujących rzeczy do nauki. Kontynuuj czytanie dokumentacji i zagłębiaj się w potężne możliwości jakie oferuje [Eloquent](/eloquent) i system szablonów [Blade](/templates). Być może jesteś bardziej zainteresowany poznaniem możliwości zwykłych zapytań [Queues](/queues) i tym jak stosować [Testy jednostkowe](/testing). Później możesz być też zainteresowany zmaganiem z architekturą Laravel i [kontenerem IoC](/ioc). Wybór należy do Ciebie!

@@ -12,7 +12,7 @@ Laravel jest frameworkiem o ekspresywnej i eleganckiej składni. Wierzymy, że t
 
 Laravel ma na celu uczynienie procesu tworzenia aplikacji, jak najwygodniejszym dla developera, bez konieczności poświęcania funkcjonalności samej aplikacji. Szczęśliwi developerzy tworzą najlepszy kod. W tym celu podjęliśmy próbę połączenia tego co najlepsze z innych frameworków w jedno rozwiązanie. Czerpaliśmy wzorce nie tylko z projektów opartych o PHP, ale też Ruby on Rails, ASP.NET MVC i Sinatra.
 
-Laravel jest łatwo dostępny, ale i potężny. Stanowi świetny zestaw narzędzi do budowy dużych i solidnych aplikacji. Ekspresyjny system migracji i ściśle zintegrowane testowanie, dają Ci narzędzia potrzebne do budowy każdej aplikacji.
+Laravel jest łatwy w zrozumieniu, ale i potężny. Stanowi świetny zestaw narzędzi do budowy dużych i solidnych aplikacji. Ekspresyjny system migracji i ściśle zintegrowane testowanie, dają Ci narzędzia potrzebne do budowy każdej aplikacji.
 
 <a name="learning-laravel"></a>
 ## Nauka Laravel
