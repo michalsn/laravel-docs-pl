@@ -1,7 +1,7 @@
 - Wstęp
     - [Wprowadzenie](/introduction)
     - [Szybki start](/quick)
-    - [Contributing](/contributing)
+    - [Współtworzenie](/contributing)
 - Getting Started
     - [Installation](/installation)
     - [Configuration](/configuration)

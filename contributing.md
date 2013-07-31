@@ -1,31 +1,31 @@
-# Contributing To Laravel
+# Współtworzenie Laravel
 
-- [Introduction](#introduction)
-- [Pull Requests](#pull-requests)
-- [Coding Guidelines](#coding-guidelines)
+- [Wprowadzenie](#introduction)
+- [Wysyłanie zmian](#pull-requests)
+- [Wytyczne odnośnie tworzenia kodu](#coding-guidelines)
 
 <a name="introduction"></a>
-## Introduction
+## Wprowadzenie
 
-Laravel is free, open-source software, meaning anyone can contribute to its development and progress. Laravel source code is currently hosted on [Github](http://github.com), which provides an easy method for forking the project and merging your contributions.
+Laravel jest frameworkiem open-source, to oznacza, że każdy może uczestniczyć w jego rozwoju i go współtworzyć. Kod źródłowy Laravel znajduje się obecnie na [Github](http://github.com), który umożliwia w łatwy sposób na stworzenie Twojej własnej kopii kodu, naniesienie zmian i późniejsze ich włączanie z powrotem do kodu frameworka.
 
 <a name="pull-requests"></a>
-## Pull Requests
+## Wysyłanie zmian
 
-The pull request process differs for new features and bugs. Before sending a pull request for a new feature, you should first create an issue with `[Proposal]` in the title. The proposal should describe the new feature, as well as implementation ideas. The proposal will then be reviewed and either approved or denied. Once a proposal is approved, a pull request may be created implementing the new feature. Pull requests which do not follow this guideline will be closed immediately.
+Proces wysyłania zmian jest inny dla nowych funkcji i błędów. Przed wysłaniem zmian dla nowej funkcjonalności powinieneś zgłosić problem (issue) w temacie dołączając napis `[Proposal]`. Propozycja powinna opisywać nową funkcję oraz pomysły na jej implementację. Propozycja będzie oceniona i zostanie zatwierdzona lub odrzucona. Jeśli propozycja zostanie zatwierdzona, można wysłać pull-request z implementacją nowej funkcjonalności. Wysłane zmiany, które nie będą przestrzegać tych zasad będą od razu zamykane.
 
-Pull requests for bugs may be sent without creating any proposal issue. If you believe that you know of a solution for a bug that has been filed on Github, please leave a comment detailing your proposed fix.
+Przy wysyłaniu zmian dla błędów, można pominąć tworzenie propozycji. Jeśli uważasz, że znasz rozwiązanie dla błędu, który pojawił się na Github, możesz zostawić komentarz opisujący Twoją propozycję na naprawienie go.
 
-### Feature Requests
+### Prośby o nowe funkcje
 
-If you have an idea for a new feature you would like to see added to Laravel, you may create an issue on Github with `[Request]` in the title. The feature request will then be reviewed by a core contributor.
+Jeśli masz pomysł na nową funkcję, którą chciałbyś zobaczyć w Laravel, możesz zgłosić problem (issue) na Github, dołączając w tytule napis `[Request]`. Prośba o nową funkcjonalność zostanie oceniona przez głównego kontrybutora.
 
 <a name="coding-guidelines"></a>
-## Coding Guidelines
+## Wytyczne odnośnie tworzenia kodu
 
-Laravel follows the [PSR-0](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md) and [PSR-1](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md) coding standards. In addition to these standards, below is a list of other coding standards that should be followed:
+Laravel stosuje się do standardów pisania kodu [PSR-0](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md) oraz [PSR-1](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md). Dodatkowo, spełnione powinny być następujące standardy pisania kodu:
 
-- Namespace declarations should be on the same line as `<?php`.
-- Class opening `{` should be on the same line as the class name.
-- Function and control structure opening `{` should be on a separate line.
-- Interface names are suffixed with `Interface` (`FooInterface`)
+- Deklaracja namespace powinna znajdować się w tej samej linii co `<?php`.
+- Przy nazwie klasy `{` powinien znajdować się w tej samej linii co nazwa klasy.
+- Przy funkcjach i stukturach kontrolnych `{` powinien znajdować się w osobnej linii.
+- Nazwy interfejsów powinny mieć suffix `Interface` (`FooInterface`)
