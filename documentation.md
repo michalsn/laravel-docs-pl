@@ -2,8 +2,8 @@
     - [Wprowadzenie](/introduction)
     - [Szybki start](/quick)
     - [Współtworzenie](/contributing)
-- Getting Started
-    - [Installation](/installation)
+- Pierwsze kroki
+    - [Instalacja](/installation)
     - [Configuration](/configuration)
     - [Request Lifecycle](/lifecycle)
     - [Routing](/routing)
