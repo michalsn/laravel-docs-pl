@@ -4,8 +4,8 @@
     - [Współtworzenie](/contributing)
 - Pierwsze kroki
     - [Instalacja](/installation)
-    - [Configuration](/configuration)
-    - [Request Lifecycle](/lifecycle)
+    - [Konfiguracja](/configuration)
+    - [Schemat działania](/lifecycle)
     - [Routing](/routing)
     - [Requests & Input](/requests)
     - [Views & Responses](/responses)
