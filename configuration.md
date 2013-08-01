@@ -1,38 +1,38 @@
-# Configuration
+# Konfiguracja
 
-- [Introduction](#introduction)
-- [Environment Configuration](#environment-configuration)
-- [Maintenance Mode](#maintenance-mode)
+- [Wprowadzenie](#introduction)
+- [Konfiguracja środowiska](#environment-configuration)
+- [Tryb konserwacji](#maintenance-mode)
 
 <a name="introduction"></a>
-## Introduction
+## Wprowadzenie
 
-All of the configuration files for the Laravel framework are stored in the `app/config` directory. Each option in every file is documented, so feel free to look through the files and get familiar with the options available to you.
+Wszystkie pliki konfiguracyjne dla frameworka Laravel znajdują się w katalogu `app/config`. Każda z opcji, która znajduje się w plikach jest opisana, więc ze spokojem możesz przejrzeć te pliki i zobaczyć jakie opcje masz do dyspozycji.
 
-Sometimes you may need to access configuration values at run-time. You may do so using the `Config` class:
+Czasami możesz chcieć mieć dostęp do wartości konfiguracyjnych podczas działania aplikacji. Możesz to zrobić za pośrednictwem klasy `Config`:
 
-**Accessing A Configuration Value**
+**Dostęp do zmiennej konfiguracyjnej**
 
 	Config::get('app.timezone');
 
-You may also specify a default value to return if the configuration option does not exist:
+Możesz również określić domyślną wartość jaka ma zostać zwrócona, jeśli dana zmienna konfiguracyjna nie istanieje:
 
 	$timezone = Config::get('app.timezone', 'UTC');
 
-Notice that "dot" style syntax may be used to access values in the various files. You may also set configuration values at run-time:
+Zauważ, ze posługujemy się tutaj "kropkową" składnią aby dotrzeć do wartości z różnych plików. Możesz również ustawić zmienną konfiguracyjną podczas działania aplikacji:
 
-**Setting A Configuration Value**
+**Ustawianie zmiennej konfiguracyjnej**
 
 	Config::set('database.default', 'sqlite');
 
-Configuration values that are set at run-time are only set for the current request, and will not be carried over to subsequent requests.
+Zmienne konfiguracyjne, które są ustawiane podczas działania aplikacji, są ustawiane tylko na okres danego żądania i nie będą zapisywane, a tym samym przenoszone do kolejnych żądań.
 
 <a name="environment-configuration"></a>
-## Environment Configuration
+## Konfiguracja środowiska
 
-It is often helpful to have different configuration values based on the environment the application is running in. For example, you may wish to use a different cache driver on your local development machine than on the production server. It is easy to accomplish this using environment based configuration.
+Często wygodnie jest posiadać różne wartości konfiguracyjne, zależne od środowiska, w którym uruchomiona jest aplikacja. Dla przykładu, możesz chcieć stosować różne sterowniki cache'owania, w zależności od tego, czy działasz na maszynie developerskiej, czy środowisku produkcyjnym. Takie podejście można łatwo osiągnąć stosując konfigurację opartą o dane środowisko.
 
-Simply create a folder within the `config` directory that matches your environment name, such as `local`. Next, create the configuration files you wish to override and specify the options for that environment. For example, to override the cache driver for the local environment, you would create a `cache.php` file in `app/config/local` with the following content:
+Wystarczy, że stworzysz w katalogu `config` folder, który będzie odpowiadał nazwie Twojego środowiska, np. `local`. Następnie utworzysz pliki konfiguracyjne, które chcesz przesłonić i określisz opcje dla tego środowiska. Dla przykładu, aby przesłonić konfigurację sterownika cache'u dla lokalnej maszyny, utworzylibyśmy plik `cache.php` w folderze `app/config/local` o następującej treści:
 
 	<?php
 
@@ -42,11 +42,11 @@ Simply create a folder within the `config` directory that matches your environme
 
 	);
 
-> **Note:** Do not use 'testing' as an environment name. This is reserved for unit testing.
+> **Uwaga:** Dla nazwy środowiska nie używaj nazwy `testing`. Jest ona zarezerwowana dla testów jednostkowych.
 
-Notice that you do not have to specify _every_ option that is in the base configuration file, but only the options you wish to override. The environment configuration files will "cascade" over the base files.
+Zauważ, że nie musisz określać _każdej_ opcji, która znajduje się w bazowym pliku konfiguracyjnym, lecz tylko te opcje, które chcesz zastąpić.
 
-Next, we need to instruct the framework how to determine which environment it is running in. The default environment is always `production`. However, you may setup other environments within the `bootstrap/start.php` file at the root of your installation. In this file you will find an `$app->detectEnvironment` call. The array passed to this method is used to determine the current environment. You may add other environments and machine names to the array as needed.
+Następnie musimy poinformować framework w jakim środowisku działa. Domyślnym środowiskiem jest zawsze `production`. Możesz jednak ustawić inne środowisko w pliku `bootstrap/start.php` w głównym pliku Twojej instalacji. W tym pliku znajdziesz wywołanie `$app->detectEnvironment`. Tablica przypisana do tej metody jest używana do określenia aktualnego środowiska. Jeśli potrzebujesz, możesz dodać inne środowiska i nazwy maszyn to tej tablicy.
 
     <?php
 
@@ -56,33 +56,33 @@ Next, we need to instruct the framework how to determine which environment it is
 
     ));
 
-You may also pass a `Closure` to the `detectEnvironment` method, allowing you to implement your own environment detection:
+Możesz również przypisać funkcję anonimową (`Closure`) do metody `detectEnvironment`, co pozwoli na implementację własnego sposobu na ustawianie środowiska:
 
 	$env = $app->detectEnvironment(function()
 	{
 		return $_SERVER['MY_LARAVEL_ENV'];
 	});
 
-You may access the current application environment via the `environment` method:
+Do aktualnego środowiska aplikacji, możesz się dostać za pomoca metody:
 
-**Accessing The Current Application Environment**
+**Dostęp do aktualnego środowiska aplikacji**
 
 	$environment = App::environment();
 
 <a name="maintenance-mode"></a>
-## Maintenance Mode
+## Tryb konserwacji
 
-When your application is in maintenance mode, a custom view will be displayed for all routes into your application. This makes it easy to "disable" your application while it is updating. A call to the `App::down` method is already present in your `app/start/global.php` file. The response from this method will be sent to users when your application is in maintenance mode.
+Kiedy Twoja aplikacja jest w trybie konserwacji, zwyczajne widoki będą wyłączone dla wszystkich reguł routingu. W ten sposób mozesz łatwo "wyłączyć"" swoją aplikację podczas dokonywania aktualizacji. Odwołanie do metody `App::down` jest w pliku `app/start/global.php`. Odpowiedź z tej metody zostanie zwrócona do użytkownika kiedy aplikacja będzie w trybie konserwacji.
 
-To enable maintenance mode, simply execute the `down` Artisan command:
+Aby aktywować tryb konserwacji, należy wykonać komendę `down` dla Artisan:
 
 	php artisan down
 
-To disable maintenance mode, use the `up` command:
+Aby wyłączyć tryb konserwacji, użyj komendy `up`:
 
 	php artisan up
 
-To show a custom view when your application is in maintenance mode, you may add something like the following to your application's `app/start/global.php` file:
+Aby wyświetlić określony widok, kiedy aplikacja jest w trybie konserwacji, możesz dodać do pliku `app/start/global.php` kod podobny do tego:
 
 	App::down(function()
 	{
