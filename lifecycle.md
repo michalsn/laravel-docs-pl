@@ -1,29 +1,29 @@
-# Request Lifecycle
+# Schemat działania
 
-- [Overview](#overview)
-- [Start Files](#start-files)
-- [Application Events](#application-events)
+- [Wprowadzenie](#overview)
+- [Pliki startowe](#start-files)
+- [Zdarzenia aplikacji](#application-events)
 
 <a name="overview"></a>
-## Overview
+## Wprowadzenie
 
-The Laravel request lifecycle is fairly simple. A request enters your application and is dispatched to the appropriate route or controller. The response from that route is then sent back to the browser and displayed on the screen. Sometimes you may wish to do some processing before or after your routes are actually called. There are several opportunities to do this, two of which are "start" files and application events.
+Schemat działania frameworka jest dosyć prosty. Żądanie dociera do Twojej aplikacji i jest wysyłane do odpowiedniej reguły routingu lub kontrolera. Stamtąd, odpowiedź jest wysyłana z powrotem do przeglądarki i wyświetlana na ekranie. Czasami możesz zechcieć wykonać jakieś operacje przed lub po tym jak dana reguła routingu zostanie wywołana. Mamy kilka możliwości, aby to zrobić. Pierwszą z nich jest wykorzystanie plików "startowych", a drugą zdarzeń apliakcji.
 
 <a name="start-files"></a>
-## Start Files
+## Pliki startowe
 
-Your application's start files are stored at `app/start`. By default, three are included with your application: `global.php`, `local.php`, and `artisan.php`. For more information about `artisan.php`, refer to the documentation on the [Artisan command line](/commands#registering-commands).
+Pliki startowe Twojej aplikacji znajdują się w katalogu `app/start`. Domyślnie dołączone są trzy pliki: `global.php`, `local.php` oraz `artisan.php`. Aby uzyskać więcej informacji na temat pliku `artisan.php`, zajrzyj do rozdziału [linia komend Artisan](/commands#registering-commands).
 
-The `global.php` start file contains a few basic items by default, such as the registration of the [Logger](/errors) and the inclusion of your `app/filters.php` file. However, you are free to add anything to this file that you wish. It will be automatically included on _every_ request to your application, regardless of environment. The `local.php` file, on the other hand, is only called when the application is executing in the `local` environment. For more information on environments, check out the [configuration](/configuration) documentation.
+Plik startowy `global.php` zawiera domyślnie kilka podstawowych rzeczy, takich jak rejestracja [logowania](/errors) oraz dołączanie pliku `app/filters.php`. Możesz jednak dodać do tego pliku cokolwiek tylko chcesz. To co dodasz będzie dołączane do _każdego_ wywołania Twojej aplikacji, niezależnie od środowiska. Z drugiej strony, plik `local.php`, jest wywoływany tylko wtedy, gdy aplikacja działa w środowisku `local`. Jeśli chcesz uzyskać więcej informacji na temat środowisk, zajrzyj do rozdziału [konfiguracja](/configuration).
 
-Of course, if you have other environments in addition to `local`, you may create start files for those environments as well. They will be automatically included when your application is running in that environment.
+Oczywiście, jeśli posiadasz inne środowiska poza `local`, to dla nich również możesz utworzyć pliki startowe. Będą one automatycznie wczytywane, kiedy Twoja aplikacja będzie działała w danym środowisku.
 
 <a name="application-events"></a>
-## Application Events
+## Zdarzenia aplikacji
 
-You may also do pre and post request processing by registering `before`, `after`, `close`, `finish`, and `shutdown` application events:
+Możesz wykonywać określone działania przed lub po wykonaniu żądania do aplikacji. Możesz to osiągnąć poprzez rejestrację zdarzeń `before`, `after`, `close`, `finish` lub `shutdown`: 
 
-**Registering Application Events**
+**Rejestrowanie zdarzeń aplikacji**
 
 	App::before(function()
 	{
@@ -35,4 +35,4 @@ You may also do pre and post request processing by registering `before`, `after`
 		//
 	});
 
-Listeners to these events will be run `before` and `after` each request to your application.
+Obserwatory dla tych zdarzeń będą uruchomione przed (`before`) i po (`after`) każdym żądaniu do Twojej aplikacji.
