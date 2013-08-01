@@ -8,7 +8,7 @@
 <a name="laravel-philosophy"></a>
 ## Filozofia Laravel
 
-Laravel jest frameworkiem o ekspresywnej i eleganckiej składni. Wierzymy, że tworzenie aplikacji musi być przyjemnym i kreatywnym doświadczeniem. Laravel dostarcza typowych funkcjonalności, które są wykorzystywane na codzień przy tworzeniu projektów internetowych, np. autentykacja, routing, sesje i cache'owanie.
+Laravel jest frameworkiem o ekspresywnej i eleganckiej składni. Wierzymy, że tworzenie aplikacji musi być przyjemnym i kreatywnym doświadczeniem. Laravel dostarcza typowych funkcjonalności, które są wykorzystywane na codzień przy tworzeniu projektów internetowych, np. uwierzytelnianie, routing, sesje i cache'owanie.
 
 Laravel ma na celu uczynienie procesu tworzenia aplikacji, jak najwygodniejszym dla developera, bez konieczności poświęcania funkcjonalności samej aplikacji. Szczęśliwi developerzy tworzą najlepszy kod. W tym celu podjęliśmy próbę połączenia tego co najlepsze z innych frameworków w jedno rozwiązanie. Czerpaliśmy wzorce nie tylko z projektów opartych o PHP, ale też Ruby on Rails, ASP.NET MVC i Sinatra.
 
