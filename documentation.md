@@ -7,8 +7,8 @@
     - [Konfiguracja](/configuration)
     - [Schemat działania](/lifecycle)
     - [Routing](/routing)
-    - [Requests & Input](/requests)
-    - [Views & Responses](/responses)
+    - [Żądania i dane wejściowe](/requests)
+    - [Widoki i dane wyjściowe](/responses)
     - [Controllers](/controllers)
     - [Errors & Logging](/errors)
 - Learning More
