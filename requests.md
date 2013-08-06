@@ -1,167 +1,168 @@
-# Requests & Input
+# Żądania i dane wejściowe
 
-- [Basic Input](#basic-input)
-- [Cookies](#cookies)
-- [Old Input](#old-input)
-- [Files](#files)
-- [Request Information](#request-information)
+- [Podstawowe dane wejściowe](#basic-input)
+- [Ciasteczka](#cookies)
+- [Stare dane wejściowe](#old-input)
+- [Pliki](#files)
+- [Informacje o żądaniu](#request-information)
 
 <a name="basic-input"></a>
-## Basic Input
+## Podstawowe dane wejściowe
 
+Możesz uzyskac dostęp do danych wejściowych użytkownika za pomocą kilku prostych metod. Nie musisz martwić się o nazwę metody HTTP, ponieważ wszsytkie dane wejściowe są obsługiwane w ten sam sposób.
 You may access all user input with a few simple methods. You do not need to worry about the HTTP verb used for the request, as input is accessed in the same way for all verbs.
 
-**Retrieving An Input Value**
+**Pobieranie wartości danej wejściowej**
 
 	$name = Input::get('name');
 
-**Retrieving A Default Value If The Input Value Is Absent**
+**Pobieranie wartości domyślnej, jeśli brak jest danej wejściowej**
 
 	$name = Input::get('name', 'Sally');
 
-**Determining If An Input Value Is Present**
+**Sprawdzanie, czy istnieje dana wartość wejściowa**
 
 	if (Input::has('name'))
 	{
 		//
 	}
 
-**Getting All Input For The Request**
+**Pobieranie wszystkich danych wejściowych dla żądania**
 
 	$input = Input::all();
 
-**Getting Only Some Of The Request Input**
+**Pobieranie tylko wybranych danych wejściowych dla żądania**
 
 	$input = Input::only('username', 'password');
 
 	$input = Input::except('credit_card');
 
-Some JavaScript libraries such as Backbone may send input to the application as JSON. You may access this data via `Input::get` like normal.
+Niektóre biblioteki JavaScript, takie jak Backbone, mogą wysyłać dane wejściowe w formacie JSON. Dostęp do danych w takim formacie odbywa się normalnie, za pośrednictwem `Input::get`.
 
 <a name="cookies"></a>
-## Cookies
+## Ciasteczka
 
-All cookies created by the Laravel framework are encrypted and signed with an authentication code, meaning they will be considered invalid if they have been changed by the client.
+Wszystkie ciasteczka utworzone przez framework Laravel są szyfrowane i podpisane za pomocą kodu uwierzytelniającego. Oznacza to, że ciasteczko będzie nieważne w przypadku wprowadzenia "ręcznych" zmian przez klienta.
 
-**Retrieving A Cookie Value**
+**Pobieranie wartości ciasteczka**
 
 	$value = Cookie::get('name');
 
-**Attaching A New Cookie To A Response**
+**Dołączanie nowego ciasteczka do odpowiedzi na żądanie**
 
 	$response = Response::make('Hello World');
 
 	$response->withCookie(Cookie::make('name', 'value', $minutes));
 
-**Creating A Cookie That Lasts Forever**
+**Tworzenie "wiecznego" ciasteczka (bez ograniczeń czasowych)**
 
 	$cookie = Cookie::forever('name', 'value');
 
 <a name="old-input"></a>
-## Old Input
+## Stare dane wejściowe
 
-You may need to keep input from one request until the next request. For example, you may need to re-populate a form after checking it for validation errors.
+Możesz potrzebować zatrzymać dane wejściowe z jednego żądania i przekazać je do drugiego. Może to być przydatne, np. podczas ponownego uzupełniania pól formularza, kiedy wystąpiły błędy walidacji. 
 
-**Flashing Input To The Session**
+**Przekazywanie danych wejściowych do zmiennych sesji**
 
 	Input::flash();
 
-**Flashing Only Some Input To The Session**
+**Przekazywanie tylko niektórych danych wejściowych do zmiennych sesji**
 
 	Input::flashOnly('username', 'email');
 
 	Input::flashExcept('password');
 
-Since you often will want to flash input in association with a redirect to the previous page, you may easily chain input flashing onto a redirect.
+Ponieważ często będziesz chciał wykorzystywać przekazywanie danych do sesji razem z przekierowaniem do poprzedniej strony, możesz wykorzystać method chaining.
 
 	return Redirect::to('form')->withInput();
 
 	return Redirect::to('form')->withInput(Input::except('password'));
 
-> **Note:** You may flash other data across requests using the [Session](/session) class.
+> **Uwaga:** Możesz przekazywać również inne dane do kolejnego żądania za pomocą klasy [sesji](/session).
 
-**Retrieving Old Data**
+**Pobieranie starych danych wejściowych z sesji**
 
 	Input::old('username');
 
 <a name="files"></a>
-## Files
+## Pliki
 
-**Retrieving An Uploaded File**
+**Zwracanie wgranego pliku**
 
 	$file = Input::file('photo');
 
-**Determining If A File Was Uploaded**
+**Sprawdzanie, czy plik został wgrany**
 
 	if (Input::hasFile('photo'))
 	{
 		//
 	}
 
-The object returned by the `file` method is an instance of the `Symfony\Component\HttpFoundation\File\UploadedFile` class, which extends the PHP `SplFileInfo` class and provides a variety of methods for interacting with the file.
+Obiekt zwrócony przez metodę `file` jest instancją klasy `Symfony\Component\HttpFoundation\File\UploadedFile`, która rozszerza klasę PHP `SplFileInfo` i dostarcza wiele różnych metod do pracy z plikiem.
 
-**Moving An Uploaded File**
+**Przenoszenie wgranego pliku**
 
 	Input::file('photo')->move($destinationPath);
 
 	Input::file('photo')->move($destinationPath, $fileName);
 
-**Retrieving The Path To An Uploaded File**
+**Zwracanie ścieżki do wgranego pliku**
 
 	$path = Input::file('photo')->getRealPath();
 
-**Retrieving The Original Name Of An Uploaded File**
+**Zwracanie oryginalnej nazwy dla wgranego pliku**
 
 	$name = Input::file('photo')->getClientOriginalName();
 
-**Retrieving The Size Of An Uploaded File**
+**Zwracanie rozmiaru dla wgranego pliku**
 
 	$size = Input::file('photo')->getSize();
 
-**Retrieving The MIME Type Of An Uploaded File**
+**Zwracanie typu MIME dla wgranego pliku**
 
 	$mime = Input::file('photo')->getMimeType();
 
 <a name="request-information"></a>
-## Request Information
+## Informacje o żądaniuRequest Information
 
-The `Request` class provides many methods for examining the HTTP request for your application and extends the `Symfony\Component\HttpFoundation\Request` class. Here are some of the highlights.
+Klasa `Request` dostarcza wiele metod do sprawdzania żądań HTTP dla Twojej aplikacji i rozszerza klasę `Symfony\Component\HttpFoundation\Request`. Oto niektóre z najważniejszych metod.
 
-**Retrieving The Request URI**
+**Zwraca adres URI żądania**
 
 	$uri = Request::path();
 
-**Determining If The Request Path Matches A Pattern**
+**Sprawdza, czy żądanie posiada ścieżkę pasującą do wzorca**
 
 	if (Request::is('admin/*'))
 	{
 		//
 	}
 
-**Get The Request URL**
+**Pobiera adres URL żądania**
 
 	$url = Request::url();
 
-**Retrieve A Request URI Segment**
+**Zwraca segment żądania URI**
 
 	$segment = Request::segment(1);
 
-**Retrieving A Request Header**
+**Zwraca nagłówek żądania**
 
 	$value = Request::header('Content-Type');
 
-**Retrieving Values From $_SERVER**
+**Zwraca wartości ze zmiennej $_SERVER**
 
 	$value = Request::server('PATH_INFO');
 
-**Determine If The Request Is Using AJAX**
+**Określa, czy żądanie wykorzystuje AJAX**
 
 	if (Request::ajax())
 	{
 		//
 	}
 
-**Determining If The Request Is Over HTTPS**
+**Określa, czy żądanie wysłane jest po protokole HTTPS**
 
 	if (Request::secure())
 	{
