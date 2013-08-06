@@ -1,24 +1,24 @@
-# Views & Responses
+# Widoki i dane wyjściowe
 
-- [Basic Responses](#basic-responses)
-- [Redirects](#redirects)
-- [Views](#views)
-- [View Composers](#view-composers)
-- [Special Responses](#special-responses)
+- [Podstawowe dane wyjściowe](#basic-responses)
+- [Przekierowania](#redirects)
+- [Widoki](#views)
+- [Kompozytorzy widoku](#view-composers)
+- [Specjalne dane wyjściowe](#special-responses)
 
 <a name="basic-responses"></a>
-## Basic Responses
+## Podstawowe dane wyjściowe
 
-**Returning Strings From Routes**
+**Zwracanie ciągów za pomocą reguł routingu**
 
 	Route::get('/', function()
 	{
 		return 'Hello World';
 	});
 
-**Creating Custom Responses**
+**Tworzenie własnych danych wyjściowych**
 
-A `Response` instance inherits from the `Symfony\Component\HttpFoundation\Response` class, providing a variety of methods for building HTTP responses.
+Instancja `Response` dziedziczy z klasy `Symfony\Component\HttpFoundation\Response` i dostarcza wielu metod do budowy odpowiedzi HTTP.
 
 	$response = Response::make($contents, $statusCode);
 
@@ -26,53 +26,53 @@ A `Response` instance inherits from the `Symfony\Component\HttpFoundation\Respon
 
 	return $response;
 
-**Attaching Cookies To Responses**
+**Dołączanie ciasteczka do danych wyjściowych**
 
 	$cookie = Cookie::make('name', 'value');
 
 	return Response::make($content)->withCookie($cookie);
 
 <a name="redirects"></a>
-## Redirects
+## Przekierowania
 
-**Returning A Redirect**
+**Zwracanie przekirowania**
 
 	return Redirect::to('user/login');
 
-**Returning A Redirect With Flash Data**
+**Zwracanie przekierowania z danymi sesyjnymi (typu flash)**
 	
 	return Redirect::to('user/login')->with('message', 'Login Failed');
 
-**Returning A Redirect To A Named Route**
+**Zwracanie przekierowania do nazwanej reguły routingu**
 
 	return Redirect::route('login');
 
-**Returning A Redirect To A Named Route With Parameters**
+**Zwracanie przekierowania do nazwanej reguły routingu z parametrami**
 
 	return Redirect::route('profile', array(1));
 
-**Returning A Redirect To A Named Route Using Named Parameters**
+**Zwracanie przekierowania do nazwanej reguły routingu z nazwanymi parametrami**
 
 	return Redirect::route('profile', array('user' => 1));
 
-**Returning A Redirect To A Controller Action**
+**Zwracanie przekierowania do akcji kontrolera**
 
 	return Redirect::action('HomeController@index');
 
-**Returning A Redirect To A Controller Action With Parameters**
+**Zwracanie przekierowania do akcji kontrolera z parametrami**
 
 	return Redirect::action('UserController@profile', array(1));
 
-**Returning A Redirect To A Controller Action Using Named Parameters**
+**Zwracanie przekierowania do akcji kontrolera z nazwanymi parametrami**
 
 	return Redirect::action('UserController@profile', array('user' => 1));
 
 <a name="views"></a>
-## Views
+## Widoki
 
-Views typically contain the HTML of your application and provide a convenient way of separating your controller and domain logic from your presentation logic. Views are stored in the `app/views` directory.
+Widoki zazwyczaj zawierają kod HTML Twojej aplikacji i są wygodnym sposobem na odseparowanie kontrolerów i głównej logiki aplikacji od wartwy prezentacji. Widoki znajdują się w katalogu `app/views`.
 
-A simple view could look something like this:
+Prosty widok może wyglądać w ten sposób:
 
 	<!-- View stored in app/views/greeting.php -->
 
@@ -82,36 +82,36 @@ A simple view could look something like this:
 		</body>
 	</html>
 
-This view may be returned to the browser like so:
+Ten widok może zostać zwrócony do przeglądarki w ten sposób:
 
 	Route::get('/', function()
 	{
 		return View::make('greeting', array('name' => 'Taylor'));
 	});
 
-The second argument passed to `View::make` is an array of data that should be made available to the view.
+Drugi argument przypisany do `View::make` jest tablicą z danymi, które powinny być dostępne w widoku.
 
-**Passing Data To Views**
+**Przekazywanie danych do widoku**
 
 	$view = View::make('greeting', $data);
 
 	$view = View::make('greeting')->with('name', 'Steve');
 
-In the example above the variable `$name` would be accessible from the view, and would contain `Steve`.
+W powyższym przykładzie, zmienna `$name` będzie dostępna w widoku i zawierać będzie wartość `Steve`.
 
-You may also share a piece of data across all views:
+Możesz również udostępniać dane dla wszystkich widoków jednocześnie:
 
 	View::share('name', 'Steve');
 
-**Passing A Sub-View To A View**
+**Przekazywanie widoku do widoku**
 
-Sometimes you may wish to pass a view into another view. For example, given a sub-view stored at `app/views/child/view.php`, we could pass it to another view like so:
+Czasami możesz zechcieć przekazać widok, do drugiego widoku. Dla przykładu, mając widok w katalogu `app/views/child/view.php`, moglibyśmy go przekazać do innego widoku w ten sposób:
 
 	$view = View::make('greeting')->nest('child', 'child.view');
 
 	$view = View::make('greeting')->nest('child', 'child.view', $data);
 
-The sub-view can then be rendered from the parent view:
+"Podwidok" może być wtedy wyświetlony z głównego widoku w ten sposób:
 
 	<html>
 		<body>
@@ -121,31 +121,31 @@ The sub-view can then be rendered from the parent view:
 	</html>
 
 <a name="view-composers"></a>
-## View Composers
+## Kompozytorzy widoku
 
-View composers are callbacks or class methods that are called when a view is created. If you have data that you want bound to a given view each time that view is created throughout your application, a view composer can organize that code into a single location. Therefore, view composers may function like "view models" or "presenters".
+Kompozytorzy widoku, to żądania zwrotne lub metody klasy, które są wywoływane, kiedy tworzony jest widok. Jeśli masz dane, które chcesz powiązać z danym widokiem, za każdym razem kiedy jest on tworzony przez Twoją aplikację, to za pomocą kompozytora widoku możesz umieścić kod w jednym miejscu. Kompozytorzy widoku mogą funkcjonować jak "widoki modelów" lub "prezenterzy".
 
-**Defining A View Composer**
+**Definiowanie kompozytora widoku**
 
 	View::composer('profile', function($view)
 	{
 		$view->with('count', User::count());
 	});
 
-Now each time the `profile` view is created, the `count` data will be bound to the view.
+Teraz, za każdym razem kiedy tworzony jest widok `profile`, wartość `count` będzie powiązywana z widokiem.
 
-You may also attach a view composer to multiple views at once:
+Możesz dołączyć kompozytora widoku do wielu widoków jednocześnie:
 
     View::composer(array('profile','dashboard'), function($view)
     {
         $view->with('count', User::count());
     });
 
-If you would rather use a class based composer, which will provide the benefits of being resolved through the application [IoC Container](/ioc), you may do so:
+Jeśli wolisz używać kompozytora opartego o klasę, co będzie miało swoje zalety poprzez dostęp za pomocą [kontenera IoC](/ioc), możesz zrobić tak:
 
 	View::composer('profile', 'ProfileComposer');
 
-A view composer class should be defined like so:
+Klasa kompozytora widoku powinna być zdefiniowana w ten sposób:
 
 	class ProfileComposer {
 
@@ -156,20 +156,20 @@ A view composer class should be defined like so:
 
 	}
 
-Note that there is no convention on where composer classes may be stored. You are free to store them anywhere as long as they can be autoloaded using the directives in your `composer.json` file.
+Zwróć uwagę, że nie ma żadnej przyjętej konwencji dla lokalizacji plików kompozytora widoku. Możesz je umieszczać gdzie chcesz, jeśli tylko będą mogły być automatycznie ładowane za pomocą dyrektyw w pliku `composer.json`.
 
 <a name="special-responses"></a>
-## Special Responses
+## Specjalne dane wyjściowe
 
-**Creating A JSON Response**
+**Tworzenie odpowiedzi JSON**
 
 	return Response::json(array('name' => 'Steve', 'state' => 'CA'));
 
-**Creating A JSONP Response**
+**Tworzenie odpowiedzi JSONP**
 
 	return Response::json(array('name' => 'Steve', 'state' => 'CA'))->setCallback(Input::get('callback'));
 
-**Creating A File Download Response**
+**Tworzenie odpowiedzi zwracającej plik**
 
 	return Response::download($pathToFile);
 
