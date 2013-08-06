@@ -9,8 +9,7 @@
 <a name="basic-input"></a>
 ## Podstawowe dane wejściowe
 
-Możesz uzyskac dostęp do danych wejściowych użytkownika za pomocą kilku prostych metod. Nie musisz martwić się o nazwę metody HTTP, ponieważ wszsytkie dane wejściowe są obsługiwane w ten sam sposób.
-You may access all user input with a few simple methods. You do not need to worry about the HTTP verb used for the request, as input is accessed in the same way for all verbs.
+Możesz uzyskac dostęp do wszystkich danych wejściowych użytkownika za pomocą kilku prostych metod. Nie musisz martwić się o nazwę metody HTTP, ponieważ wszystkie dane wejściowe są obsługiwane w ten sam sposób.
 
 **Pobieranie wartości danej wejściowej**
 
@@ -88,11 +87,11 @@ Ponieważ często będziesz chciał wykorzystywać przekazywanie danych do sesji
 <a name="files"></a>
 ## Pliki
 
-**Zwracanie wgranego pliku**
+**Zwracanie przesłanego pliku**
 
 	$file = Input::file('photo');
 
-**Sprawdzanie, czy plik został wgrany**
+**Sprawdzanie, czy plik został przesłany**
 
 	if (Input::hasFile('photo'))
 	{
@@ -101,30 +100,30 @@ Ponieważ często będziesz chciał wykorzystywać przekazywanie danych do sesji
 
 Obiekt zwrócony przez metodę `file` jest instancją klasy `Symfony\Component\HttpFoundation\File\UploadedFile`, która rozszerza klasę PHP `SplFileInfo` i dostarcza wiele różnych metod do pracy z plikiem.
 
-**Przenoszenie wgranego pliku**
+**Przenoszenie przesłanego pliku**
 
 	Input::file('photo')->move($destinationPath);
 
 	Input::file('photo')->move($destinationPath, $fileName);
 
-**Zwracanie ścieżki do wgranego pliku**
+**Zwracanie ścieżki do przesłanego pliku**
 
 	$path = Input::file('photo')->getRealPath();
 
-**Zwracanie oryginalnej nazwy dla wgranego pliku**
+**Zwracanie oryginalnej nazwy dla przesłanego pliku**
 
 	$name = Input::file('photo')->getClientOriginalName();
 
-**Zwracanie rozmiaru dla wgranego pliku**
+**Zwracanie rozmiaru dla przesłanego pliku**
 
 	$size = Input::file('photo')->getSize();
 
-**Zwracanie typu MIME dla wgranego pliku**
+**Zwracanie typu MIME dla przesłanego pliku**
 
 	$mime = Input::file('photo')->getMimeType();
 
 <a name="request-information"></a>
-## Informacje o żądaniuRequest Information
+## Informacje o żądaniu
 
 Klasa `Request` dostarcza wiele metod do sprawdzania żądań HTTP dla Twojej aplikacji i rozszerza klasę `Symfony\Component\HttpFoundation\Request`. Oto niektóre z najważniejszych metod.
 
