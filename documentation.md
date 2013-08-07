@@ -9,8 +9,8 @@
     - [Routing](/routing)
     - [Żądania i dane wejściowe](/requests)
     - [Widoki i dane wyjściowe](/responses)
-    - [Controllers](/controllers)
-    - [Errors & Logging](/errors)
+    - [Kontrolery](/controllers)
+    - [Błędy i logowanie](/errors)
 - Learning More
     - [Cache](/cache)
     - [Events](/events)
