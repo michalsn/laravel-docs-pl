@@ -7,9 +7,9 @@
 - [Logowanie](#logging)
 
 <a name="error-detail"></a>
-## Error Detail
+## Szczegóły błędu
 
-Domyślnie, wyświetlanie szczegółów błędów jest włączone w Twojej aplikacji. To oznacza, że kiedy nastąpi błąd, zostanie wyświetlona strona błędu z dokładnym miejscem jego wystąpienia oraz wiadomością błędu. Możesz wyłączyć wyświetlanie szczegółowych informacji o błędach poprzez ustawienie opcji `debug` na wartość `false` w pliku `app/config/app.php`. **Jeśli działasz w środowisku produkcyjnym, to wyłączenie opcji wyświetlania błędów jest stanowczo zalecane.**
+Domyślnie, w Twojej aplikacji włączone jest wyświetlanie szczegółowych błędów. To oznacza, że kiedy wystąpi błąd, zostanie wyświetlona strona błędu z dokładnym miejscem jego wystąpienia oraz wiadomością błędu. Możesz wyłączyć wyświetlanie szczegółowych informacji o błędach poprzez ustawienie opcji `debug` na wartość `false` w pliku `app/config/app.php`. **Jeśli działasz w środowisku produkcyjnym, to wyłączenie opcji wyświetlania błędów jest stanowczo zalecane.**
 
 <a name="handling-errors"></a>
 ## Obsługa błędów
