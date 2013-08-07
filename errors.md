@@ -1,27 +1,27 @@
-# Errors & Logging
+# Błędy i logowanie
 
-- [Error Detail](#error-detail)
-- [Handling Errors](#handling-errors)
-- [HTTP Exceptions](#http-exceptions)
-- [Handling 404 Errors](#handling-404-errors)
-- [Logging](#logging)
+- [Szczegóły błędu](#error-detail)
+- [Obsługa błędów](#handling-errors)
+- [Wyjątki HTTP](#http-exceptions)
+- [Obsługa błedów 404](#handling-404-errors)
+- [Logowanie](#logging)
 
 <a name="error-detail"></a>
 ## Error Detail
 
-By default, error detail is enabled for your application. This means that when an error occurs you will be shown an error page with a detailed stack trace and error message. You may turn off error details by setting the `debug` option in your `app/config/app.php` file to `false`. **It is strongly recommended that you turn off error detail in a production environment.**
+Domyślnie, wyświetlanie szczegółów błędów jest włączone w Twojej aplikacji. To oznacza, że kiedy nastąpi błąd, zostanie wyświetlona strona błędu z dokładnym miejscem jego wystąpienia oraz wiadomością błędu. Możesz wyłączyć wyświetlanie szczegółowych informacji o błędach poprzez ustawienie opcji `debug` na wartość `false` w pliku `app/config/app.php`. **Jeśli działasz w środowisku produkcyjnym, to wyłączenie opcji wyświetlania błędów jest stanowczo zalecane.**
 
 <a name="handling-errors"></a>
-## Handling Errors
+## Obsługa błędów
 
-By default, the `app/start/global.php` file contains an error handler for all exceptions:
+Domyślnie plik `app/start/global.php` obsługuje błędy dla wszystkich wyjątków:
 
 	App::error(function(Exception $exception)
 	{
 		Log::error($exception);
 	});
 
-This is the most basic error handler. However, you may specify more handlers if needed. Handlers are called based on the type-hint of the Exception they handle. For example, you may create a handler that only handles `RuntimeException` instances:
+To najbardziej postawowa obsługa błędów. Jeśli potzrebujesz, to możesz zdefiniować więcej handlerów. Handlery są wywoływane bazując na typie wyjątku, który obsługują. Dla przykładu, możesz utworzyć handler, który obsługuje tylko instancje `RuntimeException`:
 
 	App::error(function(RuntimeException $exception)
 	{
@@ -29,6 +29,7 @@ This is the most basic error handler. However, you may specify more handlers if 
 	});
 
 If an exception handler returns a response, that response will be sent to the browser and no other error handlers will be called:
+Jeśli obsługa wyjątku, zwróci dane wyjściowe, to te dane zostaną przesłane do przeglądarki i żadna kolejna obsługa błędów nie zostanie wywołana:
 
 	App::error(function(InvalidUserException $exception)
 	{
@@ -37,7 +38,7 @@ If an exception handler returns a response, that response will be sent to the br
 		return 'Sorry! Something is wrong with this account!';
 	});
 
-To listen for PHP fatal errors, you may use the `App::fatal` method:
+Aby nasłuchiwać błędów krytycznych PHP, mozesz użyć metody `App::fatal`:
 
 	App::fatal(function($exception)
 	{
@@ -45,24 +46,24 @@ To listen for PHP fatal errors, you may use the `App::fatal` method:
 	});
 
 <a name="http-exceptions"></a>
-## HTTP Exceptions
+## Wyjątki HTTP
 
-Exceptions in respect to HTTP, refer to errors that may occur during a client request. This may be a page not found error (404), an unauthorized error (401) or even a generated 500 error. In order to return such a response, use the following:
+Wyjątki, w odniesieniu do protokołu HTTP, odnoszą się do błędów, które mogą wystąpić podczas żądania klienta. Może to być błąd typu nie znaleziono strony (404), błąd braku autoryzacji (401) lub nawet błąd 500. Aby zwrócić takie odpowiedzi, należy użyć:
 
 	App::abort(404, 'Page not found');
 
-The first argument, is the HTTP status code, with the following being a custom message you'd like to show with the error.
+Pierwszy argument to kod statusu nagłówka HTTP, a drugi to dowolna wiadomość, która zostanie wyświetlona razem z błędem.
 
-In order to raise a 401 Unauthorized exception, just do the following:
+W celu wygenerowania błędu 401 - braku autoryzacji, wystarczy zrobić tak:
 
 	App::abort(401, 'You are not authorized.');
 
-These exceptions can be executed at any time during the request's lifecycle.
+Te wyjątki mogą być wywołane w dowolnym miejscu podczas obsługi żądania.
 
 <a name="handling-404-errors"></a>
-## Handling 404 Errors
+## Obsługa błędów 404
 
-You may register an error handler that handles all "404 Not Found" errors in your application, allowing you to return custom 404 error pages:
+Możesz zarejstrować handler, który będzie obsługiwał wszystkie błędu typu "404 Not Found" w Twojej aplikacji. W ten sposób będziesz mógł wyświeltać własne strony błędów 404:
 
 	App::missing(function($exception)
 	{
@@ -70,9 +71,9 @@ You may register an error handler that handles all "404 Not Found" errors in you
 	});
 
 <a name="logging"></a>
-## Logging
+## Logowanie
 
-The Laravel logging facilities provide a simple layer on top of the powerful [Monolog](http://github.com/seldaek/monolog). By default, Laravel is configured to create daily log files for your application, and these files are stored in `app/storage/logs`. You may write information to these logs like so:
+Mechanizm logowania w Laravel dostarcza prostą warstwę, opartą na potężnej bibliotece [Monolog](http://github.com/seldaek/monolog). Domyślnie, Laravel jest tak skonfigurowany, aby tworzyć codzienne logi dla Twojej aplikacji. Pliki z logami są przechowywane w katalogu `app/storage/logs`. Informacje w logach możesz zapisywać w ten sposób:
 
 	Log::info('This is some useful information.');
 
@@ -80,17 +81,17 @@ The Laravel logging facilities provide a simple layer on top of the powerful [Mo
 
 	Log::error('Something is really going wrong.');
 
-The logger provides the seven logging levels defined in [RFC 5424](http://tools.ietf.org/html/rfc5424): **debug**, **info**, **notice**, **warning**, **error**, **critical**, and **alert**.
+Do dyspozycji jest siedem poziomów logowania zdefiniowanych w dokumencie [RFC 5424](http://tools.ietf.org/html/rfc5424): **debug**, **info**, **notice**, **warning**, **error**, **critical** i **alert**.
 
-An array of contextual data may also be passed to the log methods:
+Do metod logowania można przypisać tablicę z danymi kontekstowymi:
 
 	Log::info('Log message', array('context' => 'Other helpful information'));
 
-Monolog has a variety of additional handlers you may use for logging. If needed, you may access the underlying Monolog instance being used by Laravel:
+Monolog posiada wiele dodatkowych metod, które możesz wykorzystać do logowania. Jeśli jest taka potrzeba, możesz uzyskać dostęp do podstawowej instancji Monolog, używanej przez Laravel:
 
 	$monolog = Log::getMonolog();
 
-You may also register an event to catch all messages passed to the log:
+Możesz również zarejestrować zdarzenie, aby przechwytywać wszystkie wiadomości przekazywane do logu:
 
 **Registering A Log Listener**
 
