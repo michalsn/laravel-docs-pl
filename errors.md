@@ -93,7 +93,7 @@ Monolog posiada wiele dodatkowych metod, które możesz wykorzystać do logowani
 
 Możesz również zarejestrować zdarzenie, aby przechwytywać wszystkie wiadomości przekazywane do logu:
 
-**Registering A Log Listener**
+**Rejestrowanie obserwatora dla logowania**
 
 	Log::listen(function($level, $message, $context)
 	{
