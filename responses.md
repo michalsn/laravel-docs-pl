@@ -93,11 +93,13 @@ Drugi argument przypisany do `View::make` jest tablicą z danymi, które powinny
 
 **Przekazywanie danych do widoku**
 
-	$view = View::make('greeting', $data);
-
 	$view = View::make('greeting')->with('name', 'Steve');
 
 W powyższym przykładzie, zmienna `$name` będzie dostępna w widoku i zawierać będzie wartość `Steve`.
+
+Jeśli chcesz, to dla metody `make` w drugim parametrze, możesz przypisać całą tablicę zmiennych.
+
+	$view = View::make('greeting', $data);
 
 Możesz również udostępniać dane dla wszystkich widoków jednocześnie:
 
@@ -123,7 +125,7 @@ Czasami możesz zechcieć przekazać widok, do drugiego widoku. Dla przykładu, 
 <a name="view-composers"></a>
 ## Kompozytorzy widoku
 
-Kompozytorzy widoku, to żądania zwrotne lub metody klasy, które są wywoływane, kiedy tworzony jest widok. Jeśli masz dane, które chcesz powiązać z danym widokiem, za każdym razem kiedy jest on tworzony przez Twoją aplikację, to za pomocą kompozytora widoku możesz umieścić kod w jednym miejscu. Kompozytorzy widoku mogą funkcjonować jak "widoki modelów" lub "prezenterzy".
+Kompozytorzy widoku, to żądania zwrotne lub metody klasy, które są wywoływane, kiedy widok jest renderowany. Jeśli masz dane, które chcesz powiązać z danym widokiem, za każdym razem kiedy jest on renderowany przez Twoją aplikację, to za pomocą kompozytora widoku możesz umieścić kod w jednym miejscu. Kompozytorzy widoku mogą funkcjonować jak "widoki modelów" lub "prezenterzy".
 
 **Definiowanie kompozytora widoku**
 
@@ -132,7 +134,7 @@ Kompozytorzy widoku, to żądania zwrotne lub metody klasy, które są wywoływa
 		$view->with('count', User::count());
 	});
 
-Teraz, za każdym razem kiedy tworzony jest widok `profile`, wartość `count` będzie powiązywana z widokiem.
+Teraz, za każdym razem kiedy renderowany jest widok `profile`, wartość `count` będzie powiązywana z widokiem.
 
 Możesz dołączyć kompozytora widoku do wielu widoków jednocześnie:
 
@@ -157,6 +159,15 @@ Klasa kompozytora widoku powinna być zdefiniowana w ten sposób:
 	}
 
 Zwróć uwagę, że nie ma żadnej przyjętej konwencji dla lokalizacji plików kompozytora widoku. Możesz je umieszczać gdzie chcesz, jeśli tylko będą mogły być automatycznie ładowane za pomocą dyrektyw w pliku `composer.json`.
+
+### Kreatory widoku
+
+**Kreatory* widoku działają prawie identycznie jak kompozytorzy widoku, jednak z tą różnicą, że uruchamiane są od razu po tym jak tworzony jest widok. Aby zarejestrować kreator widoku, wystarczy skorzystać z metody `creator`:
+
+	View::creator('profile', function($view)
+  	{
+    	$view->with('count', User::count());
+  	});
 
 <a name="special-responses"></a>
 ## Specjalne dane wyjściowe
