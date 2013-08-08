@@ -73,7 +73,7 @@ Wspaniale! Utworzyliśmy prosty widok, który rozszerza layout. Teraz zacznijmy 
 
 Aby utworzyć tabelę, która będzie przechowywała nasze dane, użyjemy systemu migracji dostarczonego przez Laravel. Migracje pozwalają w ekspresyjny sposób zdefiniować zmiany dla bazy danych i w prosty sposób podzielić się nimi z innymi członkami Twojego zespołu.
 
-Najpierw skonfigurujmy połączenie dla bazy danych. Wszystkie połączenia z bazą danych możesz skonfigurować w pliku `app/config/database.php`. Domyślnie Laravel jest skonfigurowany tak, aby używać bazy SQLite. Baza SQLite znajduje się w katalogu `app/database`. Jeśli chcesz, możesz zmienić opcję `driver` na `mysql` i skonfigurować dane dostępowe dla połączenia w pliku konfiguracyjnym.
+Najpierw skonfigurujmy połączenie dla bazy danych. Wszystkie połączenia z bazą danych możesz skonfigurować w pliku `app/config/database.php`. Domyślnie Laravel jest skonfigurowany tak, aby używać bazy MySQL, dlatego musisz skonfigurować dane dostępowe dla połączenia w pliku konfiguracyjnym. Jeśli chcesz, możesz zmienić opcję `driver` na `sqlite`, co spowoduje użycie bazy SQLite znajdującej się w katalogu `app/database`.
 
 Aby stworzyć migrację, użyjemy [Artisan CLI](/artisan). W głównym katalogu Twojego projektu, wykonaj następujące polecenie z poziomu linii komend:
 
