@@ -1,114 +1,114 @@
-# Cache
+# Pamięć podręczna
 
-- [Configuration](#configuration)
-- [Cache Usage](#cache-usage)
-- [Increments & Decrements](#increments-and-decrements)
-- [Cache Sections](#cache-sections)
-- [Database Cache](#database-cache)
+- [Konfiguracja](#configuration)
+- [Używanie pamięci podręcznej](#cache-usage)
+- [Inkrementacja i dekrementacja](#increments-and-decrements)
+- [Sekcje pamięci podręcznej](#cache-sections)
+- [Pamięć podręczna dla sterownika database](#database-cache)
 
 <a name="configuration"></a>
-## Configuration
+## Konfiguracja
 
-Laravel provides a unified API for various caching systems. The cache configuration is located at `app/config/cache.php`. In this file you may specify which cache driver you would like used by default throughout your application. Laravel supports popular caching backends like [Memcached](http://memcached.org) and [Redis](http://redis.io) out of the box.
+Laravel dostarcza uniwersalne API dla wielu systemów pamięci podręcznej. Konfiguracja pamięci podręcznej znajduje się w pliku `app/config/cache.php`. W tym pliku, możesz określić, który sterownik pamięci podręcznej chciałbyć używać domyślnie w swojej aplikacji. Laravel wspiera popularne systemy pamięci podręcznej, takie jak [Memcached](http://memcached.org) i [Redis](http://redis.io) bez konieczności doinstalowywania dodatkowych komponentów.
 
-The cache configuration file also contains various other options, which are documented within the file, so make sure to read over these options. By default, Laravel is configured to use the `file` cache driver, which stores the serialized, cached objects in the filesystem. For larger applications, it is recommended that you use an in-memory cache such as Memcached or APC.
+Plik konfiguracyjny pamięci podręcznej zawiera również wiele innych opcji, których dokumentacja znajduje się w pliku - upewnij się więc, że zapoznasz się z nimi. Domyślnie, Laravel jest skonfigurowany tak, aby używać sterownika `file`, który przechowuje zserializowane i zcache'owane obiekty w systemie plików. Przy dużych aplikacjach, zalecane jest aby stosować sterowniki, które składują elementy w pamięci, takie jak Memcached lub APC.
 
 <a name="cache-usage"></a>
-## Cache Usage
+## Używanie pamięci podręcznej
 
-**Storing An Item In The Cache**
+**Przechowywanie elementu w pamięci podręcznej**
 
 	Cache::put('key', 'value', $minutes);
 
-**Storing An Item In The Cache If It Doesn't Exist**
+**Przechowywanie elementu w pamięci podręcznej, jeśli dany element nie isnieje**
 
 	Cache::add('key', 'value', $minutes);
 
-**Checking For Existence In Cache**
+**Sprawdzanie, czy element istanieje w pamięci podręcznej**
 
 	if (Cache::has('key'))
 	{
 		//
 	}
 
-**Retrieving An Item From The Cache**
+**Zwracanie elementu z pamięci podręcznej**
 
 	$value = Cache::get('key');
 
-**Retrieving An Item Or Returning A Default Value**
+**Zwracanie elementu z pamięci podręcznej lub domyślnej wartości**
 
 	$value = Cache::get('key', 'default');
 
 	$value = Cache::get('key', function() { return 'default'; });
 
-**Storing An Item In The Cache Permanently**
+**Przechowywanie elementu w pamięci podręcznej na stałe**
 
 	Cache::forever('key', 'value');
 
-Sometimes you may wish to retrieve an item from the cache, but also store a default value if the requested item doesn't exist. You may do this using the `Cache::remember` method:
+Czasami możesz zechcieć zwrócić element z pamięci podręcznej, ale również przechować domyślną wartość, jeśli dany element nie istnieje. Możesz to zrobić za pomocą metody `Cache::remember`:
 
 	$value = Cache::remember('users', $minutes, function()
 	{
 		return DB::table('users')->get();
 	});
 
-You may also combine the `remember` and `forever` methods:
+Możesz również połączyć działanie metod `remember` i `forever`:
 
 	$value = Cache::rememberForever('users', function()
 	{
 		return DB::table('users')->get();
 	});
 
-Note that all items stored in the cache are serialized, so you are free to store any type of data.
+Zwróć uwagę, że wszystkie elementy przechowywane w pamięci podręcznej są zserializowane, możesz więc przechowywać każdy typ danych.
 
-**Removing An Item From The Cache**
+**Usuwanie elementu z pamięci podręcznej**
 
 	Cache::forget('key');
 
 <a name="increments-and-decrements"></a>
-## Increments & Decrements
+## Inkrementacja i dekrementacja
 
-All drivers except `file` and `database` support the `increment` and `decrement` operations:
+Wszystkie sterowniki za wyjątkiem `file` i `database`, wspierają operacje inkrementacji i dekrementacji:
 
-**Incrementing A Value**
+**Inkrementacja wartości**
 
 	Cache::increment('key');
 
 	Cache::increment('key', $amount);
 
-**Decrementing A Value**
+**Dekrementacja wartości**
 
 	Cache::decrement('key');
 
 	Cache::decrement('key', $amount);
 
 <a name="cache-sections"></a>
-## Cache Sections
+## Sekcje pamięci podręcznej
 
-> **Note:** Cache sections are not supported when using the `file` or `database` cache drivers.
+> **Uwaga:** Sekcje pamięci podręcznej nie są wspierane podczas korzystania ze sterownika `file` lub `database`.
 
-Cache sections allow you to group related items in the cache, and then flush the entire section. To access a section, use the `section` method:
+Sekcje pamięci podręcznej pozwalają na grupowanie powiązanych elementów i późniejsze ich zwracanie w całości. Aby mieć dostęp do sekcji, użyj metody `section`:
 
-**Accessing A Cache Section**
+**Dostęp do sekcji pamięci podręcznej**
 
 	Cache::section('people')->put('John', $john);
 
 	Cache::section('people')->put('Anne', $anne);
 
-You may also access cached items from the section, as well as use the other cache methods such as `increment` and `decrement`:
+Możesz uzyskać dostęp do elementów z pamięci podręcznej oraz używać innych metod, takich jak `increment` i `decrement`:
 
-**Accessing Items In A Cache Section**
+**Dostęp do elementów z sekcji pamięci podręcznej**
 
 	$anne = Cache::section('people')->get('Anne');
 
-Then you may flush all items in the section:
+W ten sposób możesz zwrócić wszystkie elementy sekcji:
 
 	Cache::section('people')->flush();
 
 <a name="database-cache"></a>
-## Database Cache
+## Pamięć podręczna dla sterownika database
 
-When using the `database` cache driver, you will need to setup a table to contain the cache items. Below is an example `Schema` declaration for the table:
+Jeśli używasz sterownika `database` do przechowywania pamięci podręcznej, to musisz utworzyć tabelę, na przechowywane elementy. Poniżej znajduje się przykładowa deklaracja `schematu` dla tabeli:
 
 	Schema::create('cache', function($table)
 	{
