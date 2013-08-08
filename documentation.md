@@ -11,8 +11,8 @@
     - [Widoki i dane wyjściowe](/responses)
     - [Kontrolery](/controllers)
     - [Błędy i logowanie](/errors)
-- Learning More
-    - [Cache](/cache)
+- Dowiedz się więcej
+    - [Pamięć podręczna](/cache)
     - [Events](/events)
     - [Facades](/facades)
     - [Forms & HTML](/html)
