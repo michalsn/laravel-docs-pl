@@ -162,7 +162,7 @@ Zwróć uwagę, że nie ma żadnej przyjętej konwencji dla lokalizacji plików 
 
 ### Kreatory widoku
 
-**Kreatory* widoku działają prawie identycznie jak kompozytorzy widoku, jednak z tą różnicą, że uruchamiane są od razu po tym jak tworzony jest widok. Aby zarejestrować kreator widoku, wystarczy skorzystać z metody `creator`:
+*Kreatory* widoku działają prawie identycznie jak kompozytorzy widoku, jednak z tą różnicą, że uruchamiane są od razu po tym jak tworzony jest widok. Aby zarejestrować kreator widoku, wystarczy skorzystać z metody `creator`:
 
 	View::creator('profile', function($view)
   	{
