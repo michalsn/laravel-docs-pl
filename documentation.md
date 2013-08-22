@@ -13,8 +13,8 @@
     - [Błędy i logowanie](/errors)
 - Dowiedz się więcej
     - [Pamięć podręczna](/cache)
-    - [Events](/events)
-    - [Facades](/facades)
+    - [Zdarzenia](/events)
+    - [Fasady](/facades)
     - [Forms & HTML](/html)
     - [Helpers](/helpers)
     - [IoC Container](/ioc)
