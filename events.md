@@ -1,17 +1,17 @@
-# Events
+# Zdarzenia
 
-- [Basic Usage](#basic-usage)
-- [Wildcard Listeners](#wildcard-listeners)
-- [Using Classes As Listeners](#using-classes-as-listeners)
-- [Queued Events](#queued-events)
-- [Event Subscribers](#event-subscribers)
+- [Podstawowe użycie](#basic-usage)
+- [Obserwatorzy wildcard](#wildcard-listeners)
+- [Używanie klas jako obserwatorów](#using-classes-as-listeners)
+- [Kolejkowanie zdarzeń](#queued-events)
+- [Subskrybenci zdarzenia](#event-subscribers)
 
 <a name="basic-usage"></a>
-## Basic Usage
+## Podstawowe użycie
 
-The Laravel `Event` class provides a simple observer implementation, allowing you to subscribe and listen for events in your application.
+Klasa `Event` w Laravel dostarcza prostą implementację wzorca obserwatora. Dzięki temu mamy możliwość rejestrowania i uruchamiania zdarzeń w naszej aplikacji.
 
-**Subscribing To An Event**
+**Rejestrowanie zdarzenia**
 
 	Event::listen('user.login', function($user)
 	{
@@ -20,21 +20,21 @@ The Laravel `Event` class provides a simple observer implementation, allowing yo
 		$user->save();
 	});
 
-**Firing An Event**
+**Uruchamianie zdarzenia**
 
 	$event = Event::fire('user.login', array($user));
 
-You may also specify a priority when subscribing to events. Listeners with higher priority will be run first, while listeners that have the same priority will be run in order of subscription.
+Możesz również określić priorytet podczas rejestracji zdarzenia. Obserwatory o większym priorytecie będą uruchamiane wcześniej, natomiast te o tym samym priorytecie będą uruchamiane w kolejności ich deklarowania.
 
-**Subscribing To Events With Priority**
+**Rejestrowanie zdarzenia z priorytetem**
 
 	Event::listen('user.login', 'LoginHandler', 10);
 
 	Event::listen('user.login', 'OtherHandler', 5);
 
-Sometimes, you may wish to stop the propagation of an event to other listeners. You may do so using by returning `false` from your listener:
+Czasami możesz nie chcieć, aby dane zdarzenie było nadal widoczne dla innych obserwetorów. W takim wypadku wystarczy, że zwrócisz wartość `false`:
 
-**Stopping The Propagation Of An Event**
+**Zatrzymanie propagacji zdarzenia**
 
 	Event::listen('user.login', function($event)
 	{
@@ -44,31 +44,31 @@ Sometimes, you may wish to stop the propagation of an event to other listeners. 
 	});
 
 <a name="wildcard-listeners"></a>
-## Wildcard Listeners
+## Obserwatory wildcard
 
-When registering an event listener, you may use asterisks to specify wildcard listeners:
+Kiedy rejestrujesz obserwator dla zdarzenia, możesz wykorzystać gwiazdkę, aby określić wildcard:
 
-**Registering Wildcard Event Listeners**
+**Rejestrowanie zdarzenia wildcard**
 
 	Event::listen('foo.*', function($param, $event)
 	{
 		// Handle the event...
 	});
 
-This listener will handle all events that begin with `foo.`. Note that the full event name is passed as the last argument to the handler.
+Ten obserwator, będzie obsługiwał wszystkie zdarzenia, które zaczynają się od `foo.`. Zwróć uwagę, że pełna nazwa zdarzenia jest przypisana jako ostatni argument.
 
 <a name="using-classes-as-listeners"></a>
-## Using Classes As Listeners
+## Używanie klas jako obserwatorów
 
-In some cases, you may wish to use a class to handle an event rather than a Closure. Class event listeners will be resolved out of the [Laravel IoC container](/ioc), providing you the full power of dependency injection on your listeners.
+W niektórych przypadkach, możesz chcieć użyć klasy zamiast anonimowej funkcji, aby obsłużyć zdarzenie. Można to osiągnąć za pomocą [kontenera IoC](/ioc), który pozwala na skorzystanie ze wstrzykiwania zależności.
 
-**Registering A Class Listener**
+**Rejestrowanie obserwatora dla klasy**
 
 	Event::listen('user.login', 'LoginHandler');
 
-By default, the `handle` method on the `LoginHandler` class will be called:
+Domyślnie dla klasy `LoginHandle`, zostanie wywołana metoda `handle`:
 
-**Defining An Event Listener Class**
+**Definiowanie klasy obserwatora**
 
 	class LoginHandler {
 
@@ -79,38 +79,38 @@ By default, the `handle` method on the `LoginHandler` class will be called:
 
 	}
 
-If you do not wish to use the default `handle` method, you may specify the method that should be subscribed:
+Jeśli nie chcesz używać domyślnej metody `handle`, możesz określić metodę, która ma zostać zarejestrowana:
 
-**Specifying Which Method To Subscribe**
+**Określanie metody do zarejestrowania**
 
 	Event::listen('user.login', 'LoginHandler@onLogin');
 
 <a name="queued-events"></a>
-## Queued Events
+## Kolejkowanie zdarzeń
 
-Using the `queue` and `flush` methods, you may "queue" an event for firing, but not fire it immediately:
+Przy użyciu metod `queue` i `flush`, możesz "kolejkować" zdarzenia do uruchomienia, ale nie uruchamiać ich od razu:
 
-**Registering A Queued Event**
+**Rejestrowanie zdarzenia do zakolejkowania**
 
 	Event::queue('foo', array($user));
 
-**Registering An Event Flusher**
+**Rejestrowanie Flushera dla zdarzenia**
 
 	Event::flusher('foo', function($user)
 	{
 		//
 	});
 
-Finally, you may run the "flusher" and flush all queued events using the `flush` method:
+Na koniec, możesz uruchomić "flushera" i przekazać wszystkie zakolejkowane zdarzenia za pomocą metody `flush`:
 
 	Event::flush('foo');
 
 <a name="event-subscribers"></a>
-## Event Subscribers
+## Subskrybenci zdarzenia
 
-Event subscribers are classes that may subscribe to multiple events from within the class itself. Subscribers should define a `subscribe` method, which will be passed an event dispatcher instance:
+Subskrybenci zdarzenia, to klasy, które które można zapisać do wielu zdarzeń z poziomu samej klasy. Sybskrybencji, powinni mieć zdefiniowaną metodę `subscribe`, do której zostanie przekazana instancja dispatchera event:
 
-**Defining An Event Subscriber**
+**Definiowanie subskrybenta zdarzenia**
 
 	class UserEventHandler {
 
@@ -145,9 +145,9 @@ Event subscribers are classes that may subscribe to multiple events from within 
 
 	}
 
-Once the subscriber has been defined, it may be registered with the `Event` class.
+Kiedy subskrybent zostanie zdefiniowany, może zostać zarejestrowany przy pomocy klasy `Event`.
 
-**Registering An Event Subscriber**
+**Rejestrowanie subskrybenta zdarzeń**
 
 	$subscriber = new UserEventHandler;
 
