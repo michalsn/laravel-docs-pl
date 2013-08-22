@@ -43,6 +43,8 @@ Instancja `Response` dziedziczy z klasy `Symfony\Component\HttpFoundation\Respon
 	
 	return Redirect::to('user/login')->with('message', 'Login Failed');
 
+**Uwaga:** Ponieważ metoda `with()` przekazuje dane do sesji, możesz zwrócić te dane (jak zawsze) za pomocą metody `Session::get`.
+
 **Zwracanie przekierowania do nazwanej reguły routingu**
 
 	return Redirect::route('login');

@@ -114,6 +114,10 @@ Obiekt zwrócony przez metodę `file` jest instancją klasy `Symfony\Component\H
 
 	$name = Input::file('photo')->getClientOriginalName();
 
+**Zwracanie rozszerzenia dla przesłanego pliku**
+
+	$extension = Input::file('photo')->getClientOriginalExtension();
+
 **Zwracanie rozmiaru dla przesłanego pliku**
 
 	$size = Input::file('photo')->getSize();
