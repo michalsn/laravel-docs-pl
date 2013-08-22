@@ -98,7 +98,7 @@ If you are unable to generate the query you need via the fluent interface, feel 
 
 **Specifying The Query Connection**
 
-You may also specify which database connection should be used when running an Eloquent query. Simple use the `on` method:
+You may also specify which database connection should be used when running an Eloquent query. Simply use the `on` method:
 
 	$user = User::on('connection-name')->find(1);
 
@@ -197,6 +197,8 @@ To delete a model, simply call the `delete` method on the instance:
 **Deleting An Existing Model By Key**
 
 	User::destroy(1);
+
+	User::destroy(array(1, 2, 3));
 
 	User::destroy(1, 2, 3);
 
@@ -770,7 +772,7 @@ Note that this operation does not delete records from the `roles` table, but onl
 <a name="collections"></a>
 ## Collections
 
-All multi-result sets returned by Eloquent either via the `get` method or a relationship return an Eloquent `Collection` object. This object implements the `IteratorAggregate` PHP interface so it can be iterated over like an array. However, this object also has a variety of other helpful methods for working with result sets.
+All multi-result sets returned by Eloquent, either via the `get` method or a `relationship`, will return a collection object. This object implements the `IteratorAggregate` PHP interface so it can be iterated over like an array. However, this object also has a variety of other helpful methods for working with result sets.
 
 For example, we may determine if a result set contains a given primary key using the `contains` method:
 
@@ -987,3 +989,17 @@ Sometimes you may wish to limit the attributes that are included in your model's
 Alternatively, you may use the `visible` property to define a white-list:
 
 	protected $visible = array('first_name', 'last_name');
+
+<a name="array-appends"></a>
+Occasionally, you may need to add array attributes that do not have a corresponding column in your database. To do so, simply define an accessor for the value:
+
+	public function getIsAdminAttribute()
+	{
+		return $this->attributes['admin'] == 'yes';
+	}
+
+Once you have created the accessor, just add the value to the `appends` property on the model:
+
+	protected $appends = array('is_admin');
+
+Once the attribute has been added to the `appends` list, it will be included in both the model's array and JSON forms.
