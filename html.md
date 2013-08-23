@@ -1,57 +1,57 @@
-# Forms & HTML
+# Formularze i HTML
 
-- [Opening A Form](#opening-a-form)
-- [CSRF Protection](#csrf-protection)
-- [Form Model Binding](#form-model-binding)
-- [Labels](#labels)
-- [Text, Text Area, Password & Hidden Fields](#text)
-- [Checkboxes and Radio Buttons](#checkboxes-and-radio-buttons)
-- [File Input](#file-input)
-- [Drop-Down Lists](#drop-down-lists)
-- [Buttons](#buttons)
-- [Custom Macros](#custom-macros)
+- [Otwieranie formularza](#opening-a-form)
+- [Ochrona CSRF](#csrf-protection)
+- [Bindowanie formularza modelem](#form-model-binding)
+- [Pola label](#labels)
+- [Pola text, textarea, password i hidden](#text)
+- [Pola checkboxes i radio](#checkboxes-and-radio-buttons)
+- [Pole file](#file-input)
+- [Listy dropdown](#drop-down-lists)
+- [Przyciski](#buttons)
+- [Tworzenie makr](#custom-macros)
 
 <a name="opening-a-form"></a>
-## Opening A Form
+## Otwieranie formularza
 
-**Opening A Form**
+**Otwieranie formularza**
 
 	{{ Form::open(array('url' => 'foo/bar')) }}
 		//
 	{{ Form::close() }}
 
-By default, a `POST` method will be assumed; however, you are free to specify another method:
+Domyślnie, użyta zostanie metoda `POST`; jednak możesz określić metodę samodzielnie:
 
 	echo Form::open(array('url' => 'foo/bar', 'method' => 'put'))
 
-> **Note:** Since HTML forms only support `POST` and `GET`, `PUT` and `DELETE` methods will be spoofed by automatically adding a `_method` hidden field to your form.
+> **Uwaga:** Ponieważ formularze HTML wspierają jedynie metody `POST` i `GET`, to metody `PUT` i `DELETE` będą emulowane poprzez automatyczne dodanie ukrytego pola `_method` w Twoim formularzu.
 
-You may also open forms that point to named routes or controller actions:
+Możesz również otworzyć formularz, który będzie kierował do nazwanej reguły routingu lub akcji kontrolera:
 
 	echo Form::open(array('route' => 'route.name'))
 
 	echo Form::open(array('action' => 'Controller@method'))
 
-You may pass in route parameters as well:
+Możesz też dołączać parametry dla routingu:
 
 	echo Form::open(array('route' => array('route.name', $user->id)))
 
 	echo Form::open(array('action' => array('Controller@method', $user->id)))
 
-If your form is going to accept file uploads, add a `files` option to your array:
+Jeśli Twój formularz ma obsługiwać wgrywanie plików, musisz dodać opcję `files` do swojej tablicy:
 
 	echo Form::open(array('url' => 'foo/bar', 'files' => true))
 
 <a name="csrf-protection"></a>
-## CSRF Protection
+## Ochrona CSRF
 
-Laravel provides an easy method of protecting your application from cross-site request forgeries. First, a random token is placed in your user's session. Don't sweat it, this is done automatically. The CSRF token will be added to your forms as a hidden field automatically. However, if you wish to generate the HTML for the hidden field, you may use the `token` method:
+Laravel dostarcza łatwy sposób na ochronę Twojej aplikacji przed cross-site request forgeries. Najpierw, w Twojej sesji umieszczany jest losowy token. Nie przejmuj się, wszystko odbywa się automatycznie. Token CSRF będzie dodawany do Twoich formularzy automatycznie, jako ukryte pole. Jednak, jeśli chciałbyś sam wygenerować kod HTML dla ukrytego pola, możesz skorzystać z metody `token`:
 
-**Adding The CSRF Token To A Form**
+**Dodawanie tokenu CSRF do formularza**
 
 	echo Form::token();
 
-**Attaching The CSRF Filter To A Route**
+**Dołączanie filtra CSRF do reguły routingu**
 
 	Route::post('profile', array('before' => 'csrf', function()
 	{
@@ -59,93 +59,94 @@ Laravel provides an easy method of protecting your application from cross-site r
 	}));
 
 <a name="form-model-binding"></a>
-## Form Model Binding
+## Bindowanie formularza modelem
 
-Often, you will want to populate a form based on the contents of a model. To do so, use the `Form::model` method:
+Często będziesz chciał wypelnić formularz na podstawie zawartości modelu. Aby to zrobić, możesz użyć metody `Form::model`:
 
-**Opening A Model Form**
+**Otwieranie formularza modelu**
 
 	echo Form::model($user, array('route' => array('user.update', $user->id)))
 
+Jeśli teraz wygenerujesz element formularza, jak np. pole tekstowe, to wartość z modelu, która odpowiada nazwie pola zostanie automatycznie ustawiona, jako wartośc tego pola. Tak więc dla przykładu, jeśli pole tekstowe ma nazwę `email`, to zostanie podstawiona wartość z modelu z atrybutu o nazwie `email`. To jednak nie wszystko! Jeśli w sesji, w danych flash istnieje element, który odpowiada nazwie pola, to zostanie on ustawiony jako wartość tego pola, a nie atrybut z modelu. Tak więc, kolejność priorytetów wygląda następująco:
 Now, when you generate a form element, like a text input, the model's value matching the field's name will automatically be set as the field value. So, for example, for a text input named `email`, the user model's `email` attribute would be set as the value. However, there's more! If there is an item in the Session flash data matching the input name, that will take precedence over the model's value. So, the priority looks like this:
 
-1. Session Flash Data (Old Input)
-2. Explicitly Passed Value
-3. Model Attribute Data
+1. Dane flash sesji (stare dane wejściowe)
+2. Bezpośrednio przekazana wartość
+3. Atrybut z modelu
 
-This allows you to quickly build forms that not only bind to model values, but easily re-populate if there is a validation error on the server!
+To pozwala na szybką budowę formularzy, które nie tylko pobierają wartości z modelu, ale są również w łatwy sposób wypełniane ponownie, kiedy wystąpią błędy walidacji.
 
-> **Note:** When using `Form::model`, be sure to close your form with `Form::close`!
+> **Uwaga:** Kiedy używasz `Form::model` upewnij się, zamykasz swój formularz za pomocą `Form::close`!
 
 <a name="labels"></a>
-## Labels
+## Pola label
 
-**Generating A Label Element**
+**Generowanie elementu label**
 
 	echo Form::label('email', 'E-Mail Address');
 
-**Specifying Extra HTML Attributes**
+**Określanie dodatkowych atrybutów HTML**
 
 	echo Form::label('email', 'E-Mail Address', array('class' => 'awesome'));
 
-> **Note:** After creating a label, any form element you create with a name matching the label name will automatically receive an ID matching the label name as well.
+> **Uwaga:** Po stworzeniu pola label, każdy element formularza o nazwie odpowiadającej nazwie pola label otrzyma automatycznie ID odpowiadający nazwie pola label.
 
 <a name="text"></a>
-## Text, Text Area, Password & Hidden Fields
+## Pola text, textarea, password i hidden
 
-**Generating A Text Input**
+**Generowanie pola text**
 
 	echo Form::text('username');
 
-**Specifying A Default Value**
+**Określanie domyślnej wartości**
 
 	echo Form::text('email', 'example@gmail.com');
 
-> **Note:** The *hidden* and *textarea* methods have the same signature as the *text* method.
+> **Uwaga:** Metody *hidden* i *textarea* działają na tej samej zaszadzie, co metoda *text*.
 
-**Generating A Password Input**
+**Generowanie pola password**
 
 	echo Form::password('password');
 	
-**Generating Other Inputs**
+**Generowanie innych pól formularza**
 
 	echo Form::email($name, $value = null, $attributes = array());
 	echo Form::file($name, $attributes = array());
 	
 <a name="checkboxes-and-radio-buttons"></a>
-## Checkboxes and Radio Buttons
+## Pola checkbox i radio
 
-**Generating A Checkbox Or Radio Input**
+**Generowanie pola checkbox lub radio**
 
 	echo Form::checkbox('name', 'value');
 	
 	echo Form::radio('name', 'value');
 
-**Generating A Checkbox Or Radio Input That Is Checked**
+**Generowanie zaznaczonego pola checkbox lub radio**
 
 	echo Form::checkbox('name', 'value', true);
 	
 	echo Form::radio('name', 'value', true);
 
 <a name="file-input"></a>
-## File Input
+## Pole file
 
-**Generating A File Input**
+**Generowanie pola file**
 
 	echo Form::file('image');
 
 <a name="drop-down-lists"></a>
-## Drop-Down Lists
+## Listy dropdown
 
-**Generating A Drop-Down List**
+**Generowanie listy dropdown**
 
 	echo Form::select('size', array('L' => 'Large', 'S' => 'Small'));
 
-**Generating A Drop-Down List With Selected Default**
+**Generowanie listy dropdown z zaznaczoną domyślną wartością**
 
 	echo Form::select('size', array('L' => 'Large', 'S' => 'Small'), 'S');
 
-**Generating A Grouped List**
+**Generowanie pogrupowanej listy**
 
 	echo Form::select('animal', array(
 		'Cats' => array('leopard' => 'Leopard'),
@@ -153,28 +154,28 @@ This allows you to quickly build forms that not only bind to model values, but e
 	));
 
 <a name="buttons"></a>
-## Buttons
+## Przyciski
 
-**Generating A Submit Button**
+**Generowanie przycisku submit**
 
 	echo Form::submit('Click Me!');
 
-> **Note:** Need to create a button element? Try the *button* method. It has the same signature as *submit*.
+> **Uwaga:** Musisz utworzyć emenent button? Skorzystaj z metody *button*. Działa ona na tej samej zasadzie, co metoda *submit*.
 
 <a name="custom-macros"></a>
-## Custom Macros
+## Tworzenie makr
 
-It's easy to define your own custom Form class helpers called "macros". Here's how it works. First, simply register the macro with a given name and a Closure:
+Łatwo jest definiować swoje własne helpery dla klasy formularza, które nazywają się "makra". Oto jak to działa. Najpierw zarejestruj makro poprzez podanie nazwy w anonimowej funkcji:
 
-**Registering A Form Macro**
+**Rejestrowanie makra dla formularza**
 
 	Form::macro('myField', function()
 	{
 		return '<input type="awesome">';
 	});
 
-Now you can call your macro using its name:
+Teraz możesz wywołać swoje makro poprzez użycie jego nazwy:
 
-**Calling A Custom Form Macro**
+**Wywoływanie makra formularza**
 
 	echo Form::myField();
