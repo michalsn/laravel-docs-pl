@@ -1,17 +1,17 @@
-# Helper Functions
+# Funkcje pomocnicze
 
-- [Arrays](#arrays)
-- [Paths](#paths)
-- [Strings](#strings)
-- [URLs](#urls)
-- [Miscellaneous](#miscellaneous)
+- [Tablice](#arrays)
+- [Ściezki](#paths)
+- [Ciągi](#strings)
+- [Adresy URL](#urls)
+- [Różne](#miscellaneous)
 
 <a name="arrays"></a>
-## Arrays
+## Tablice
 
 ### array_add
 
-The `array_add` function adds a given key / value pair to the array if the given key doesn't already exist in the array.
+Funkcja `array_add` dodaje podaną parę klucz / wartość do tablicy, o ile dany klucz nie istnieje już w tablicy.
 
 	$array = array('foo' => 'bar');
 
@@ -19,7 +19,7 @@ The `array_add` function adds a given key / value pair to the array if the given
 
 ### array_divide
 
-The `array_divide` function returns two arrays, one containing the keys, and the other containing the values of the original array.
+Funkcja `array_divide` zwraca dwie tablice. Jedna zawiera klucze, a druga wartości oryginalnej tablicy.
 
 	$array = array('foo' => 'bar');
 
@@ -27,7 +27,7 @@ The `array_divide` function returns two arrays, one containing the keys, and the
 
 ### array_dot
 
-The `array_dot` function flattens a multi-dimensional array into a single level array that uses "dot" notation to indicate depth.
+Funkcja `array_dot` spłaszcza wielowymiarową tablicę do tablicy jednowymiarowej, która używa notacji "kropkowej", aby określić poziom zagnieżdżenia.
 
 	$array = array('foo' => array('bar' => 'baz'));
 
@@ -37,13 +37,13 @@ The `array_dot` function flattens a multi-dimensional array into a single level 
 
 ### array_except
 
-The `array_except` method removes the given key / value pairs from the array.
+Funkcja `array_except` usuwa podaną parę klucz / wartość z tablicy
 
 	$array = array_except($array, array('keys', 'to', 'remove'));
 
 ### array_fetch
 
-The `array_fetch` method returns a flattened array containing the selected nested element.
+Funkcja `array_fetch` zwraca spłaszczoną tablicę zawierającą zaznaczony, zagnieżdżony elementy.
 
 	$array = array(array('name' => 'Taylor'), array('name' => 'Dayle'));
 
@@ -53,7 +53,7 @@ The `array_fetch` method returns a flattened array containing the selected neste
 
 ### array_first
 
-The `array_first` method returns the first element of an array passing a given truth test.
+Funkcja `array_first` zwraca pierwszy element tablicy, który spełnia określony warunek.
 
 	$array = array(100, 200, 300);
 
@@ -62,13 +62,13 @@ The `array_first` method returns the first element of an array passing a given t
 		return $value >= 150;
 	});
 
-A default value may also be passed as the third parameter:
+Domyślna wartość może zostać przypisana jako trzeci parametr:
 
 	$value = array_first($array, $callback, $default);
 
 ### array_flatten
 
-The `array_flatten` method will flatten a multi-dimensional array into a single level.
+Funkcja `array_flatten` spłaszczy wielowymiarową tablicę do tablicy jednowymiarowej.
 
 	$array = array('name' => 'Joe', 'languages' => array('PHP', 'Ruby'));
 
@@ -78,7 +78,7 @@ The `array_flatten` method will flatten a multi-dimensional array into a single 
 
 ### array_forget
 
-The `array_forget` method will remove a given key / value pair from a deeply nested array using "dot" notation.
+Funkcja `array_forget` usunie podaną parę klucz / wartość z głęboko zagnieżdżonej tablicy, przy pomocy notacji "kropkowej".
 
 	$array = array('names' => array('joe' => array('programmer')));
 
@@ -86,7 +86,7 @@ The `array_forget` method will remove a given key / value pair from a deeply nes
 
 ### array_get
 
-The `array_get` method will retrieve a given value from a deeply nested array using "dot" notation.
+Funkcja `array_get` zwróci wartość z głęboko zagnieżdżonej tablicy, przy pomocy notacji "kropkowej".
 
 	$array = array('names' => array('joe' => array('programmer')));
 
@@ -94,7 +94,7 @@ The `array_get` method will retrieve a given value from a deeply nested array us
 
 ### array_only
 
-The `array_only` method will return only the specified key / value pairs from the array.
+Funkcja `array_only` zwróci tylko określoną parę klucz / wartość z tablicy.
 
 	$array = array('name' => 'Joe', 'age' => 27, 'votes' => 1);
 
@@ -102,7 +102,7 @@ The `array_only` method will return only the specified key / value pairs from th
 
 ### array_pluck
 
-The `array_pluck` method will pluck a list of the given key / value pairs from the array.
+Funkcja `array_pluck` zwróci tylko listę podanych par klucz / wartość z tablicy.
 
 	$array = array(array('name' => 'Taylor'), array('name' => 'Dayle'));
 
@@ -112,7 +112,7 @@ The `array_pluck` method will pluck a list of the given key / value pairs from t
 
 ### array_pull
 
-The `array_pull` method will return a given key / value pair from the array, as well as remove it.
+Funkcja `array_pull` zwróci daną parę klucz / wartość z tablicy oraz jednocześnie usunie ją z niej.
 
 	$array = array('name' => 'Taylor', 'age' => 27);
 
@@ -120,7 +120,7 @@ The `array_pull` method will return a given key / value pair from the array, as 
 
 ### array_set
 
-The `array_set` method will set a value within a deeply nested array using "dot" notation.
+Funkcja `array_set` ustawi wartość w głęboko zagnieżdżonej tablicy, przy pomocy notacji "kropkowej".
 
 	$array = array('names' => array('programmer' => 'Joe'));
 
@@ -128,7 +128,7 @@ The `array_set` method will set a value within a deeply nested array using "dot"
 
 ### array_sort
 
-The `array_sort` method sorts the array by the results of the given Closure.
+Funkcja `array_sort` posortuje tablicę według wyników z anonimowej funkcji. 
 
 	$array = array(
 		array('name' => 'Jill'),
@@ -142,41 +142,41 @@ The `array_sort` method sorts the array by the results of the given Closure.
 
 ### head
 
-Return the first element in the array. Useful for method chaining in PHP 5.3.x.
+Zwraca pierwszy element w tablicy. Przydatne przy chainingu metod w PHP 5.3.x.
 
 	$first = head($this->returnsArray('foo'));
 
 ### last
 
-Return the last element in the array. Useful for method chaining.
+Zwraca ostatni element w tablicy. Przydatne przy chainingu metod.
 
 	$last = last($this->returnsArray('foo'));
 
 <a name="paths"></a>
-## Paths
+## Ścieżki
 
 ### app_path
 
-Get the fully qualified path to the `application` directory.
+Zwraca pełną ścieżkę do folderu `application`.
 
 ### base_path
 
-Get the fully qualified path to the root of the application install.
+Zwraca pełną ścieżkę do głównego folderu, w którym zainstalowano aplikację.
 
 ### public_path
 
-Get the fully qualified path to the `public` directory.
+Zwraca pełną ścieżkę do folderu `public`.
 
 ### storage_path
 
-Get the fully qualified path to the `application/storage` directory.
+Zwraca pełną ścieżkę do folderu `application/storage`.
 
 <a name="strings"></a>
-## Strings
+## Ciągi
 
 ### camel_case
 
-Convert the given string to `camelCase`.
+Zamienia podany ciąg na postać `camelCase`.
 
 	$camel = camel_case('foo_bar');
 
@@ -184,7 +184,7 @@ Convert the given string to `camelCase`.
 
 ### class_basename
 
-Get the class name of the given class, without any namespace names.
+Zwraca nazwę klasy z danej klasy, bez przestrzeni nazw.
 
 	$class = class_basename('Foo\Bar\Baz');
 
@@ -192,19 +192,19 @@ Get the class name of the given class, without any namespace names.
 
 ### e
 
-Run `htmlentites` over the given string, with UTF-8 support.
+Uruchamia funkcję `htmlentites` dla danego ciągu, ze wsparciem dla UTF-8.
 
 	$entities = e('<html>foo</html>');
 
 ### ends_with
 
-Determine if the given haystack ends with a given needle.
+Określa, czy dany ciąg kończy się danym ciągiem.
 
 	$value = ends_with('This is my name', 'name');
 
 ### snake_case
 
-Convert the given string to `snake_case`.
+Zamienia dany ciąg na postać `snake_case`.
 
 	$snake = snake_case('fooBar');
 
@@ -212,19 +212,19 @@ Convert the given string to `snake_case`.
 
 ### starts_with
 
-Determine if the given haystack begins with the given needle.
+Określa, czy dany ciąg zaczyna się danym ciągiem.
 
 	$value = starts_with('This is my name', 'This');
 
 ### str_contains
 
-Determine if the given haystack contains the given needle.
+Określa, czy dany ciąg zawiera dany ciąg.
 
 	$value = str_contains('This is my name', 'my');
 
 ### str_finish
 
-Add a single instance of the given needle to the haystack. Remove any extra instances.
+Dodaje pojedyncze wystąpienie do danego ciągu. Usuwa dodatkowe wystąpienia.
 
 	$string = str_finish('this/string', '/');
 
@@ -232,31 +232,31 @@ Add a single instance of the given needle to the haystack. Remove any extra inst
 
 ### str_is
 
-Determine if a given string matches a given pattern. Asterisks may be used to indicate wildcards.
+Określa, czy dany ciąg pasuje do podanego wzoru. Gwiazdka może być użyta jako wildcard.
 
 	$value = str_is('foo*', 'foobar');
 
 ### str_plural
 
-Convert a string to its plural form (English only).
+Zamienia ciąg na wersję w liczbie mnogiej (tylko dla języka angielskiego)
 
 	$plural = str_plural('car');
 
 ### str_random
 
-Generate a random string of the given length.
+Generuje losowy ciąg o podanej długości.
 
 	$string = str_random(40);
 
 ### str_singular
 
-Convert a string to its singular form (English only).
+Zamienia ciąg na wersję w liczbie pojedynczej (tylko dla języka angielskiego)
 
 	$singular = str_singular('cars');
 
 ### studly_case
 
-Convert the given string to `StudlyCase`.
+Zamienia podany ciąg na postać `StudlyCase`.
 
 	$value = studly_case('foo_bar');
 
@@ -264,96 +264,96 @@ Convert the given string to `StudlyCase`.
 
 ### trans
 
-Translate a given language line. Alias of `Lang::get`.
+Tłumaczy podaną linię. Alias dla `Lang::get`.
 
 	$value = trans('validation.required'):
 
 ### trans_choice
 
-Tranlate a given language line with inflection. Alias of `Lang::choice`.
+Tłumaczy podaną linię, biorąc pod uwagę odmianę. Alias dla `Lang::choice`.
 
 	$value = trans_choice('foo.bar', $count);
 
 <a name="urls"></a>
-## URLs
+## Adresy URL
 
 ### action
 
-Generate a URL for a given controller action.
+Generuje adres URL do podanej akcji kontrolera.
 
 	$url = action('HomeController@getIndex', $params);
 
 ### asset
 
-Generate a URL for an asset.
+Generuje adres URL dla zasobu.
 
 	$url = asset('img/photo.jpg');
 
 ### link_to
 
-Generate a HTML link to the given URL.
+Generuje link HTML dla podanego adresu URL.
 
 	echo link_to('foo/bar', $title, $attributes = array(), $secure = null);
 
 ### link_to_asset
 
-Generate a HTML link to the given asset.
+Generuje link HTML do podanego zasobu.
 
 	echo link_to_asset('foo/bar.zip', $title, $attributes = array(), $secure = null);
 
 ### link_to_route
 
-Generate a HTML link to the given route.
+Generuje link HTML do podanego routingu.
 
 	echo link_to_route('route.name', $title, $parameters = array(), $attributes = array());
 
 ### link_to_action
 
-Generate a HTML link to the given controller action.
+Generuje link HTML do podanej akcji kontrolera.
 
 	echo link_to_action('HomeController@getIndex', $title, $parameters = array(), $attributes = array());
 
 ### secure_asset
 
-Generate a HTML link to the given asset using HTTPS.
+Generuje link HTML do podanego zasobu przy użyciu HTTPS.
 
 	echo secure_asset('foo/bar.zip', $title, $attributes = array());
 
 ### secure_url
 
-Generate a fully qualified URL to a given path using HTTPS.
+Generuje pełny adres URL do podanej ścieżki przy pomocy HTTPS.
 
 	echo secure_url('foo/bar', $parameters = array());
 
 ### url
 
-Generate a fully qualified URL to the given path.
+Generuje pełny adres URL do podanej ścieżki
 
 	echo url('foo/bar', $parameters = array(), $secure = null);
 
 <a name="miscellaneous"></a>
-## Miscellaneous
+## Różne
 
 ### csrf_token
 
-Get the value of the current CSRF token.
+Zwraca wartość aktualnego tokenu CSRF.
 
 	$token = csrf_token();
 
 ### dd
 
-Dump the given variable and end execution of the script.
+Zrzuca podaną wartość i kończy wykonywanie skryptu.
 
 	dd($value);
 
 ### value
 
-If the given value is a `Closure`, return the value returned by the `Closure`. Otherwise, return the value.
+Jeśli podana wartość jest anonimową funkcją, zwraca wartość zwroconą przez anonimową funkcję. W innym wypadku, zwraca wartość.
 
 	$value = value(function() { return 'bar'; });
 
 ### with
 
-Return the given object. Useful for method chaining constructors in PHP 5.3.x.
+Zwraca podany obiekt. Przydatne przy chainingu metod dla konstruktorów w PHP 5.3.x.
 
 	$value = with(new Foo)->doWork();
