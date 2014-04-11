@@ -1,50 +1,50 @@
 # Basic Database Usage
 
-- [Configuration](#configuration)
-- [Running Queries](#running-queries)
-- [Database Transactions](#database-transactions)
-- [Accessing Connections](#accessing-connections)
-- [Query Logging](#query-logging)
+- [Konfiguracja](#configuration)
+- [Wykonywanie Zapytań](#running-queries)
+- [Transakcje Bazy Danych](#database-transactions)
+- [Dostęp do połączeń](#accessing-connections)
+- [Logowanie zapytań](#query-logging)
 
 <a name="configuration"></a>
-## Configuration
+## Konfiguracja
 
-Laravel makes connecting with databases and running queries extremely simple. The database configuration file is `app/config/database.php`. In this file you may define all of your database connections, as well as specify which connection should be used by default. Examples for all of the supported database systems are provided in this file.
+Z pomocą Laravel tworzenie połączeń z bazą danych i wykonywanie zapytań jest bardzo proste. Konfiguracja bazy danych znajduje się w pliku `app/config/database.php`. W pliku możesz zdefiniować wszystkie połączenia z bazami danych, jak również sprecyzować które połączenie powinno użyć jako domyślne. Przykłady dla wszystkich wspieranych baz danych znajdują się w tym pliku.
 
-Currently Laravel supports four database systems: MySQL, Postgres, SQLite, and SQL Server.
+Aktualnie Laravel wspiera cztery systemy baz danych: MySQL, Postgres, SQLite, i SQL Server.
 
 <a name="running-queries"></a>
-## Running Queries
+## Wykonywanie zapytań
 
-Once you have configured your database connection, you may run queries using the `DB` class.
+Kiedy masz już skonfigurowane połączenie z bazą możesz wykonywać zapytania przy pomocy klasy `DB`.
 
-**Running A Select Query**
+**Wykonywanie zapytania SELECT**
 
 	$results = DB::select('select * from users where id = ?', array(1));
 
-The `select` method will always return an `array` of results.
+Metoda `select` zawsze zwraca wynik w `array`.
 
-**Running An Insert Statement**
+**Wykonywanie zapytania INSERT**
 
 	DB::insert('insert into users (id, name) values (?, ?)', array(1, 'Dayle'));
 
-**Running An Update Statement**
+**Wykonyanie zapytania UPDATE**
 
 	DB::update('update users set votes = 100 where name = ?', array('John'));
 
-**Running A Delete Statement**
+**Wykonywanie zapytania DELETE**
 
 	DB::delete('delete from users');
 
-> **Note:** The `update` and `delete` statements return the number of rows affected by the operation.
+> **Note:** Metody `update` i `delete` zwracają ilość wierszy których dotyczyło zapytanie.
 
-**Running A General Statement**
+**Wykonywanie dowolnego zapytania**
 
 	DB::statement('drop table users');
 
-You may listen for query events using the `DB::listen` method:
+Możesz nasłuchiwać zapytań używając metody `DB::listen`:
 
-**Listening For Query Events**
+**Nasłuchiwanie zapytań**
 
 	DB::listen(function($sql, $bindings, $time)
 	{
@@ -52,9 +52,9 @@ You may listen for query events using the `DB::listen` method:
 	});
 
 <a name="database-transactions"></a>
-## Database Transactions
+## Transakcje Bazy Danych
 
-To run a set of operations within a database transaction, you may use the `transaction` method:
+Aby uruchomić zbiór operacji w transakcji powinieneś użyć metody `transaction`:
 
 	DB::transaction(function()
 	{
@@ -64,23 +64,23 @@ To run a set of operations within a database transaction, you may use the `trans
 	});
 
 <a name="accessing-connections"></a>
-## Accessing Connections
+## Dostęp do połączeń
 
-When using multiple connections, you may access them via the `DB::connection` method:
+Kiedy używasz wielu połączeń możesz zdefiniować połączenie za pomocą metody `DB::connection`:
 
 	$users = DB::connection('foo')->select(...);
 
-You may also access the raw, underlying PDO instance:
+Możesz również pobrać sam obiekt PDO:
 
 	$pdo = DB::connection()->getPdo();
 
-Sometimes you may need to reconnect to a given database:
+W momencie kiedy będziesz potrzebował wznowienia połączenia możesz użyć metody:
 
 	DB::reconnect('foo');
 
 <a name="query-logging"></a>
-## Query Logging
+## Logowanie zapytań
 
-By default, Laravel keeps a log in memory of all queries that have been run for the current request. However, in some cases, such as when inserting a large number of rows, this can cause the application to use excess memory. To disable the log, you may use the `disableQueryLog` method:
+Domyślnie Laravel trzyma w pamięci logi wszystkich zapytań które były uruchomione w aktualnym wywołaniu. Aczkolwiek, w pewnych przypadkach, kiedy dodaje dużą ilość wierszy, może to spowodować zużycie dużej ilości pamięci. Aby wyłączyć funkcję logowania powinieneś użyć metody `disableQueryLog`:
 
 	DB::connection()->disableQueryLog();
