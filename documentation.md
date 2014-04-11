@@ -17,7 +17,7 @@
     - [Fasady](/facades)
     - [Formularze i HTML](/html)
     - [Funkcje pomocnicze](/helpers)
-    - [IoC Container](/ioc)
+    - [Kontener IoC](/ioc)
     - [Localization](/localization)
     - [Mail](/mail)
     - [Package Development](/packages)

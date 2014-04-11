@@ -1,21 +1,21 @@
-# IoC Container
+# Kontener IoC
 
-- [Introduction](#introduction)
-- [Basic Usage](#basic-usage)
+- [Wprowadzenie](#introduction)
+- [Podstawowe użycie](#basic-usage)
 - [Automatic Resolution](#automatic-resolution)
 - [Practical Usage](#practical-usage)
 - [Service Providers](#service-providers)
 - [Container Events](#container-events)
 
 <a name="introduction"></a>
-## Introduction
+## Wprowadzenie
 
-The Laravel inversion of control container is a powerful tool for managing class dependencies. Dependency injection is a method of removing hard-coded class dependencies. Instead, the dependencies are injected at run-time, allowing for greater flexibility as dependency implementations may be swapped easily.
+Odwrócony kontener kontroli w Laravel, jest potężnym narzędziem do zarządzania zależnościami. Wstrzykiwanie zależności jest sposobem na usunięcie konieczności definiowania zależności klas na stałe. Zamiast tego, zależności są wstrzykiwane podczas pracy aplikacji, pozwalając tym samym na więszą elastyczność, ponieważ wstrzyknięte zależności można w łatwy sposób zamienić.
 
-Understanding the Laravel IoC container is essential to building a powerful, large application, as well as for contributing to the Laravel core itself.
+Zrozumienie kontenera IoC w Laravel, jest niezbędne do budowy potężnych, dużych aplikacji oraz do uczestniczenia we współtworzeniu frameworka Laravel.
 
 <a name="basic-usage"></a>
-## Basic Usage
+## Podstawowe użycie
 
 There are two ways the IoC container can resolve dependencies: via Closure callbacks or automatic resolution. First, we'll explore Closure callbacks. First, a "type" may be bound into the container:
 
