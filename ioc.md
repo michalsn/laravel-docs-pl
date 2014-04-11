@@ -3,9 +3,9 @@
 - [Wprowadzenie](#introduction)
 - [Podstawowe użycie](#basic-usage)
 - [Automatic Resolution](#automatic-resolution)
-- [Practical Usage](#practical-usage)
+- [Praktyczne zastosowanie](#practical-usage)
 - [Service Providers](#service-providers)
-- [Container Events](#container-events)
+- [Zdarzenia kontenera](#container-events)
 
 <a name="introduction"></a>
 ## Wprowadzenie
@@ -91,7 +91,7 @@ Now consider the following controller:
 Since we have bound the `UserRepositoryInterface` to a concrete type, the `DbUserRepository` will automatically be injected into this controller when it is created.
 
 <a name="practical-usage"></a>
-## Practical Usage
+## Praktyczne zastosowanie
 
 Laravel provides several opportunities to use the IoC container to increase the flexibility and testability of your application. One primary example is when resolving controllers. All controllers are resolved through the IoC container, meaning you can type-hint dependencies in a controller constructor, and they will automatically be injected.
 
@@ -159,7 +159,7 @@ You may also register a service provider at run-time using the `App::register` m
 	App::register('FooServiceProvider');
 
 <a name="container-events"></a>
-## Container Events
+## Zdarzenia kontenera
 
 The container fires an event each time it resolves an object. You may listen to this event using the `resolving` method:
 
