@@ -28,6 +28,6 @@ Jeśli masz pomysł na nową funkcję, którą chciałbyś zobaczyć w Laravel, 
 Laravel stosuje się do standardów pisania kodu [PSR-0](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md) oraz [PSR-1](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md). Dodatkowo, spełnione powinny być następujące standardy pisania kodu:
 
 - Deklaracja namespace powinna znajdować się w tej samej linii co `<?php`.
-- Przy nazwie klasy `{` powinien znajdować się w tej samej linii co nazwa klasy.
-- Przy funkcjach i stukturach kontrolnych `{` powinien znajdować się w osobnej linii.
+- Otwarcie klasy `{` powinno być w tej samej linii co jej nazwa.
+- Otwarcie funkcji lub struktury kontrolnej za pomocą `{` powinno znajdować się w osobonej linii.
 - Nazwy interfejsów powinny mieć suffix `Interface` (`FooInterface`)
