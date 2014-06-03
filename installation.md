@@ -44,7 +44,9 @@ Laravel na początku właściwie nie wymaga dodatkowej konfiguracji. Możesz od 
 <a name="permissions"></a>
 ### Uprawnienia
 
-Laravel wymaga, aby dla katalogu app/storage ustawione były prawa do zapisu na serwerze.
+Laravel wymaga, aby dla katalogu app/storage ustawione były prawa do zapisu dla właściciela, na serwerze.
+W niektórych przypadkach wymagane są również prawa do wykonywania przez wszystkich użytkowników.
+Najlepiej zachować zgodność z innymi katalogami. Zalecane uprawnienia to: `drwxr--r--x`
 
 <a name="paths"></a>
 ### Ścieżki
