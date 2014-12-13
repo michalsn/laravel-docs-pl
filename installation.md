@@ -22,7 +22,7 @@ Możesz zainstalować Laravel przy pomocy polecenia Composera z poziomu linii ko
 
 ### Za pośrednictwem zwykłego downloadu
 
-Jeśli masz już zainstalowany Composer, pobierz [najnowszą wersję](https://github.com/laravel/laravel/archive/master.zip) frameworka Laravel i wypakuj ją do katalogu na swoim serwerze. Następnie z posiomu głównego katalogu projektu wykonaj komendę `php composer.phar install` (lub `composer install`), aby zainstalować zależności dla frameworka. Ten proces wymaga, aby na serwerze był zainstalowany Git.
+Jeśli masz już zainstalowany Composer, pobierz [najnowszą wersję](https://github.com/laravel/laravel/archive/master.zip) frameworka Laravel i wypakuj ją do katalogu na swoim serwerze. Następnie z poziomu głównego katalogu projektu wykonaj komendę `php composer.phar install` (lub `composer install`), aby zainstalować zależności dla frameworka. Ten proces wymaga, aby na serwerze był zainstalowany Git.
 
 Jeśli chcesz update'ować framework Laravel, możesz skorzystać z komendy `php composer.phar update`.
 
