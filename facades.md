@@ -13,7 +13,7 @@ Fasady dostarczają "statyczny" interfejs dla klas, które są dostępne w [kont
 
 Okazjonalnie, możesz chcieć utworzyć swoją własną fasadę, dla aplikacji lub pakietu. Zobaczmy więc na czym polega cały koncept, budowa i użytkowanie takich klas.
 
-> **Uwaga:** Przed zagłębieniem się w temat fasad, zalecamy wcześniejsze, dokładne zapoznanie się z tym jak działa [kontener IoC](/iob) w Laravel.
+> **Uwaga:** Przed zagłębieniem się w temat fasad, zalecamy wcześniejsze, dokładne zapoznanie się z tym jak działa [kontener IoC](/ioc) w Laravel.
 
 <a name="explanation"></a>
 ## Wyjaśnienie
