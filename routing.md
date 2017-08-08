@@ -14,7 +14,7 @@
 <a name="basic-routing"></a>
 ## Podstawowy routing
 
-Większość reguł routingu w Twojej aplikacji będzie zdefiniowana w pliku `app/routes.php`. Najprostrze reguły routingu składają się z adresu URI oraz anonimowej funkcji (Closure).
+Większość reguł routingu w Twojej aplikacji będzie zdefiniowana w pliku `app/routes.php`. Najprostsze reguły routingu składają się z adresu URI oraz anonimowej funkcji (Closure).
 
 **Podstawowy routing GET**
 
